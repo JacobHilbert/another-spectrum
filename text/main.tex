@@ -3,8 +3,8 @@
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 
-
 % text
+\usepackage{lmodern}
 \usepackage{anysize} % margins
 \usepackage{relsize} % resize text
 \usepackage{microtype} 
@@ -13,8 +13,11 @@
 % geometry 
 \linespread{1.4}
 \pagestyle{plain}
-\usepackage[left=3cm,top=3cm,right=3cm,bottom=3cm]{geometry}
+%\usepackage[left=3cm,top=3cm,right=3cm,bottom=3cm]{geometry}
+\usepackage{geometry}
+\usepackage{marginnote}
 \usepackage{adjustbox}
+\usepackage[width=.8\linewidth]{caption}
 
 % math
 \usepackage{amsfonts,amsmath,amssymb,amsthm} 
@@ -24,36 +27,37 @@
 \usepackage{float} % allows [H] on floats
 
 % reference
-\usepackage{hyperref}
+\include{conf/natbib_configuration.tex}
 
+% paragraph notes thing
+\include{conf/paragraph_intent.tex}
 
 \begin{document}
-
 	\begin{titlepage}
-	\begin{center}
-		\includegraphics[width=10cm]{img/logo-uniandes.pdf}
-		
-		\vspace{2cm}
-		
-		{\fontsize{30}{45}\selectfont \bf The other spectrum of the stars\par}
-		
-		\vspace{10mm}
-		
-		
-		{\huge Santaigo Henao Castellanos}
-		
-		\vspace{10mm}
-		
-		{\huge Director: Ph.D. Alejandro García } 
-		
-		\vspace{15mm}
-		
-		{\Large
-		Universidad de los Andes\\
-		Science Faculty, Physics Department\\
-		Bogotá, Colombia\\ \phantom{} \\
-		{[day-th]} {[month]} 2021}
-	\end{center}
+		\begin{center}
+			\includegraphics[width=10cm]{img/logo-uniandes.pdf}
+			
+			\vspace{2cm}
+			
+			{\fontsize{25}{40}\selectfont \bf The other spectrum of the stars\par}
+			
+			\vspace{10mm}
+			
+			{\huge Santiago Henao Castellanos}
+			
+			\vspace{10mm}
+			
+			{\huge Director: Dr. Alejandro García } 
+			
+			\vspace{15mm}
+			
+			{\Large
+				Universidad de los Andes\\
+				Science Faculty, Physics Department\\
+				Bogotá, Colombia\\ \phantom{} \\
+				{[day-th]} {[month]} 2021
+			}
+		\end{center}
 	\end{titlepage}
 
 \frontmatter
@@ -70,15 +74,14 @@
 		for making the morning coffee            \\ 
 		that fueled the writing of this document
 	}
-	
+
 	\vspace{5mm}
-	
+
 	\textit{
 		But all the code is for Miguel             \\
 		who will not be able to compile it anymore \\ 
 		but I think he would have liked it anyway
 	}
-
 \end{flushright}
 
 \vspace{2mm}
@@ -90,7 +93,7 @@ It was not purely a research process, but a personal voyage of discovery and mot
 
 Thus, I would like to thank first Alejandro García, the director of this monography, 
 for motivating me from the beggining of my career, and being patient with its eventual delay. 
-That career would not have been possible without the gargantuan support and love of my parents and my family, 
+The realization of that career would not have been possible without the gargantuan support and love of my parents and my family, 
 who were there on every step along the way.
 Neither without the aid of the University itself, which staff gave me ---and others--- 
 the opportuniy of continuing our studies on the still ongoing world situation.
@@ -104,17 +107,22 @@ Finally, I write this last couple of words to attempt to express the unmeassurab
 
 \mainmatter
 
+\tableofcontents
+
+\newpage
+
+\visibleintenttrue
+
 \chapter{Introduction}
+\input{chapters/introduction.tex}
+	
+\chapter{Theoretical Framework}
 
 
 
-
-
-
-
-
-
-
-
+\bibliographystyle{aa} % style aa.bst
+\bibliography{global.bib}
+	
 
 \end{document}
+
