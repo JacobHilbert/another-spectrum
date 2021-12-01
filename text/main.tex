@@ -9,6 +9,7 @@
 \usepackage{relsize} % resize text
 \usepackage{microtype} 
 \usepackage{fontsize}
+\usepackage{minted} % code in text
 
 % geometry 
 \linespread{1.4}
@@ -17,20 +18,31 @@
 \usepackage{geometry}
 \usepackage{marginnote}
 \usepackage{adjustbox}
-\usepackage[width=.8\linewidth]{caption}
+\usepackage[width=.95\linewidth]{caption}
 
 % math
 \usepackage{amsfonts,amsmath,amssymb,amsthm} 
 
 % graphics
 \usepackage{graphicx} % \includegraphics
+\usepackage{wrapfig} % in text figures
 \usepackage{float} % allows [H] on floats
 
-% reference
+% references and bibliography
+\usepackage{xcolor}
+\definecolor{purple}{rgb}{0.2,0.0,0.4}
+\usepackage[colorlinks=true,allcolors=purple]{hyperref}
+	\providecommand*{\listingautorefname}{Listing}
+\usepackage[semicolon,round,sort&compress]{natbib}
+\usepackage{csquotes}
+%\usepackage{chapterbib}
 \include{conf/natbib_configuration.tex}
 
 % paragraph notes thing
 \include{conf/paragraph_intent.tex}
+
+% TOC
+\usepackage[titletoc]{appendix}
 
 \begin{document}
 	\begin{titlepage}
@@ -51,11 +63,18 @@
 			
 			\vspace{15mm}
 			
+			{\large
+				A thesis submitted in partial fullfilment\\
+				for the degree of Bachelor of Physics
+			}
+			
+			\vspace{5mm}
+			
 			{\Large
 				Universidad de los Andes\\
 				Science Faculty, Physics Department\\
 				Bogotá, Colombia\\ \phantom{} \\
-				{[day-th]} {[month]} 2021
+				December 6th, 2021
 			}
 		\end{center}
 	\end{titlepage}
@@ -71,7 +90,7 @@
 \begin{flushright}
 	\textit{
 		I dedicate the prose to Trinidad,        \\
-		for making the morning coffee            \\ 
+		for making every morning coffee          \\ 
 		that fueled the writing of this document
 	}
 
@@ -91,23 +110,28 @@
 There were a lot of people who provided me with their guidance and support on the process of writing this document. 
 It was not purely a research process, but a personal voyage of discovery and motivation. 
 
-Thus, I would like to thank first Alejandro García, the director of this monography, 
-for motivating me from the beggining of my career, and being patient with its eventual delay. 
+Thus, I would like to thank first Alejandro García, the director of this monograph, 
+for motivating me since the beginning of my career, and being patient with its eventual delay. 
 The realization of that career would not have been possible without the gargantuan support and love of my parents and my family, 
 who were there on every step along the way.
-Neither without the aid of the University itself, which staff gave me ---and others--- 
-the opportuniy of continuing our studies on the still ongoing world situation.
+Neither without the aid of the University itself, which staff gave me and others%---and others--- 
+the opportunity of continuing our studies on the still ongoing world situation.
 
 I am also grateful with my dearest friends: Miguel, Juan David, Valeria, Camilo, Juanita and the two Nathalias. 
 My time at Bogotá would have been very sorrowful if not for them. 
-Also my roommates, David, Kelly and Gabriel. 
-On recent times of crisis, yet another David took care of me back in my hometown.
+Also my dear David, who on recent times of crisis took care of me back in my hometown.
 
-Finally, I write this last couple of words to attempt to express the unmeassurable gratitude I have for Laura.
+Finally, I write this couple of words to attempt to express the unmeasurable gratitude I have for Laura.
 
 \mainmatter
 
 \tableofcontents
+
+\newpage
+
+\listoffigures
+\listoftables
+\listoflistings
 
 \newpage
 
@@ -117,12 +141,37 @@ Finally, I write this last couple of words to attempt to express the unmeassurab
 \input{chapters/introduction.tex}
 	
 \chapter{Theoretical Framework}
+\input{chapters/theory.tex}
+
+\chapter{Methodology}
+\input{chapters/methodology.tex}
+
+\chapter{Results}
+\input{chapters/results.tex}
+
+\chapter{Conclusions}
+\input{chapters/conclusions.tex}
+
+% Appendices
+
+\appendix
+\appendixpage
+\noappendicestocpagenum
+\addappheadtotoc
+
+\chapter{Code utilities}
+\input{chapters/A_codeutils.tex}
+
+\chapter{Complementary figures}
+\input{chapters/A_complementary_figures}
 
 
+% Bibliography
 
 \bibliographystyle{aa} % style aa.bst
 \bibliography{global.bib}
-	
+
+
 
 \end{document}
 

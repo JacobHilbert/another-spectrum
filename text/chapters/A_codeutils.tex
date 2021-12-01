@@ -1,0 +1,238 @@
+\section{C listings}
+
+
+\begin{listing}[H]
+	\begin{minted}{c}
+	double eps(double x) {
+	    long i = *(long*) &x;
+	    i++;
+	    double x_next = *(double*) &i;
+	    return x_next - x;
+	}
+	\end{minted}
+	\caption[\texttt{eps} C function]{
+		C code of a function that estimates the machine epsilon for a given double precision floating point: 
+		the minimum value for which $x+\epsilon/2 > x$ still holds.
+		This code exploits the fact that consecutive floating point numbers must have consecutive bit representations.
+	}
+	\label{lst:c-eps}
+\end{listing}
+
+
+
+\section{Python listings}
+
+For all the code fragments in this section, \autoref{lst:python-header} 
+is used to define the names of the NumPy and Numba package namespaces.
+The Numba notation for function signatures is given on \autoref{tab:numba-types}.
+A string using these types in the \texttt{njit} decorator is given to allow ahead-of-time compilation.
+The notation for these strings is \texttt{return\_type(arg1\_type,arg2\_type,...)}.
+
+\begin{table}
+	\centering
+	\begin{tabular}{r|l}
+		Type & notation \\\hline\hline
+		64 bit float & \texttt{f8} \\
+		64 bit signed integer & \texttt{i8} \\
+		Contiguous 1D array & \texttt{f8[::1]} \\
+		Row-contiguous 2D array & \texttt{f8[:,::1]} 
+	\end{tabular}
+	\caption[Numba type aliases]{
+		Numba types used in the code for this work. 
+		The full list can be consulted on \url{https://numba.pydata.org/numba-doc/dev/reference/types.html}
+	}
+	\label{tab:numba-types}
+\end{table}
+
+\begin{listing}
+	\begin{minted}{python}
+	import numpy as np
+	from numba import njit
+	\end{minted}
+	\caption[Library aliases for Python]{Common library imports for all the Python listings.}
+	\label{lst:python-header}
+\end{listing}
+
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8[::1](f8[::1],f8)")
+	def phase(t_arr,f_test):
+	    return np.mod(t_arr*f_test,1.0)
+	\end{minted}
+	\caption[\texttt{phase} function]{
+		Straightforward implementation of \ref{eq:phase}. 
+		The ephemeris is no included, since it does not matter for any of the algorithms,
+		an is used just as a visual aid to present the light curves.
+	}
+	\label{lst:phase}
+\end{listing}
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8(f8[::1],f8[::1],f8)")
+	def arclength(t_arg,m_arg,f_test):
+	    phi = phase(t_arg,f_test)
+	    index = phi.argsort()
+	    return sum(np.diff(phi[index])**2 + np.diff(m_arg[index])**2)
+	\end{minted}
+	\caption[Arclength method implementation]{
+		Here, \texttt{numpy.argsort} (which is implemented as a quicksort) is used to simultaneously 
+		sort the phase array and rearrange the magnitude array.
+		The phase array is calculated with \autoref{lst:phase}.
+	}
+	\label{lst:arclength}
+\end{listing}
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8[:,::1](f8[::1],f8[::1],i8)")
+	def hist2d(x_arr,y_arr,bins):
+	    x = x_arr.copy()*bins
+	    y = y_arr.copy()*bins
+	    H = np.zeros((bins,bins))
+	    for i in range(bins):
+	        for j in range(bins):
+	            H[i,j] += sum((i<=x)*(x<=i+1)*(j<=y)*(y<=j+1))
+	    return H
+	\end{minted}
+	\caption[2D histogram simple algorithm]{
+		A simple algorithm to calculate a 2D histogram. 
+		It returns a matrix of shape \texttt{(bins,bins)} showing how many points of the data fall on each bin.
+		Both \texttt{x\_arr} and \texttt{y\_arr} are assumed to be normalized on the $[0,1]$ interval, for simplicity.
+	}
+	\label{lst:hist2d}
+\end{listing}
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8(f8[::1],f8[::1],f8,i8)")
+	def entropy(t_arg,m_arg,f_test,bins):
+	    phi = phase(t_arg,f_test)
+	    H = hist2d(phi,m_arg,bins)
+	    mu = H.ravel() / len(phi)
+	    mu = mu[np.nonzero(mu)]
+	    return -mu@np.log(mu)
+	\end{minted}
+	\caption[Naive entropy method implementation]{
+		Algorithm to calculate the entropy of a phase diagram, 
+		avoiding numerical error on large \texttt{bins} by deleting the zero probability zones.
+	}
+	\label{lst:entropy}
+\end{listing}
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8(f8[::1],f8[::1],f8,i8)")
+	def entropy_flattened(t_arg,m_arg,f_test,bins):
+	    phi = phase(t_arg,f_test)
+	    rounded_mag = np.empty_like(m_arg)
+	    np.round(bins*m_arg,0,rounded_mag)
+	    counts = np.histogram(phi+rounded_mag,bins=bins**2)[0]
+	    mu = counts/len(t_arg)
+	    mu = mu[np.nonzero(mu)]
+	    return -mu@np.log(mu)
+	\end{minted}
+	\caption[\enquote{Flattened} entropy method implementation]{
+		Algorithm to calculate the entropy of a phase diagram, 
+		flattening and rounding the magnitude scale in order to use a 1D histogram algorithm.
+	}
+	\label{lst:entropy-flattened}
+\end{listing}
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8(f8[::1],f8[::1],f8,i8)")
+	def dispersion(t_arg,m_arg,f_test,bins):
+	    x = phase(t_arg,f_test)*bins
+	    ss = np.zeros(bins) # zone variances
+	    n = np.zeros(bins) # zone occupations
+	    for i in range(bins):
+	        mask = (i<=x)&(x<=i+1)
+	        n[i] = mask.sum()
+	        if n[i] == 0:
+	            ss[i] = 0 # empty variance
+	        else:
+	            ss[i] = np.var(m_arg[mask])
+	    s2 = ((n-1)@ss)/(n-1).sum() # pooled variance
+    return 1-s2/np.var(m_arg)
+	\end{minted}
+	\caption[Dispersion method implementation]{
+		Algorithm to calculate the dispersion of a phase diagram.
+		There is some resemblance between this code and \autoref{lst:hist2d};
+		the \texttt{mask} array effectively takes a 1D histogram of the phase, 
+		contrary to a 2D one, and thus its faster.
+		Care is taken when taking an empty variance, because it is not defined in NumPy.
+	}
+	\label{lst:dispersion}
+\end{listing}
+
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8(f8[::1],f8[::1],f8)")
+	def lombscargle(t_arg,m_arg,f_test):
+	    omega_t = f_test*2*np.pi*t_arg
+	    c = np.cos(omega_t)
+	    s = np.sin(omega_t)
+	    mc = sum(m_arg*c)
+	    ms = sum(m_arg*s)
+	    cc = sum(c**2)
+	    ss = sum(s**2)
+	    cs = sum(c*s)
+	    omega_tau = np.arctan(2*cs/(cc-ss))/2
+	    c_tau = np.cos(omega_tau)
+	    s_tau = np.sin(omega_tau)
+	    P = 1/2 * (
+	        (c_tau*mc+s_tau*ms)**2/(c_tau**2*cc+2*c_tau*s_tau*cs+s_tau**2*ss) + 
+	        (c_tau*ms-s_tau*mc)**2/(c_tau**2*ss+2*c_tau*s_tau*cs+s_tau**2*cc)
+	    )
+	    return P
+	\end{minted}
+	\caption[Non-redundant implementation of the Lomb-Scargle periodogram]{
+		Non-redundant implementation of the Lomb-Scargle periodogram, according to \cite{Townsend2010}.
+		This is similar to the \href{https://github.com/scipy/scipy/blob/master/scipy/signal/\_spectral.py}{SciPy implementation}, 
+		but here Numba is used instead of Pythran. 
+	}
+	\label{lst:lomb-scargle}
+\end{listing}
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8(f8[::1],f8[::1],f8)")
+	def fourier(t_arg,m_arg,f_test):
+	    return abs(sum(m_arg*np.exp(-2j*np.pi*t_arg*f_test)))**2
+	\end{minted}
+	\caption[Naive implementation of the Fourier periodogram]{
+		Simple implementation of an iteration of the Fourier periodogram, without any optimizations.
+	}
+	\label{lst:fourier-single}
+\end{listing}
+
+\begin{listing}
+	\begin{minted}{python}
+	@njit("f8[::1](f8[::1],f8[::1],f8,f8,f8)")
+	def fourier_incremental(t_arg,m_arg,f_ini,f_end,df):
+	    dF = np.exp(-2j*np.pi*t_arg*df)
+	    F = np.zeros_like(np.arange(f_ini,f_end,df))
+	    curl = m_arg * np.exp(-2j*np.pi*t_arg*f_ini)
+	    F[0] = np.abs(sum(curl))
+	    for i in range(1,len(F)):
+	        curl = curl*dF
+	        F[i] = np.abs(sum(curl))**2
+	    return F
+	\end{minted}
+	\caption[Incremental iterative implementation of the Fourier Periodogram]{
+		Incremental iterative implementation of the nonuniform discrete Fourier transform, according to \cite{Kurtz1985}.
+		A production-grade implementation of this algorithm can be found in the \texttt{fnpeaks} 
+		\href{http://helas.astro.uni.wroc.pl/deliverables.php?lang=en&active=fnpeaks}{package} by Zbigniew Kołaczkowski;
+		this is in fact the software used by OGLE-IV \citep{OGLE2016}.
+	}
+	\label{lst:fourier}
+\end{listing}
+
+
+
+
+
+
