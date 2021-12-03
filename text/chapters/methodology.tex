@@ -351,7 +351,7 @@ Given $\nu_0,\nu_f,\Delta \nu$, the time array $t_k$ and the magnitude array $f_
 
 Perhaps the code on \autoref{lst:fourier} would be clearer.
 
-\subsection{Examples and the sampling problem}
+\subsection{Examples and the sampling problem \label{sec:examples-and-aliases}}
 
 A simple benchmark of the algorithms can be seen on \autoref{fig:runtimes}. 
 It is of note that the minimum entropy algorithm (on the naive implementation) was the slowest, 
@@ -400,14 +400,14 @@ We can take a closer look at the phase diagram and Fourier curling on one of tho
 		Sample spectra for the five methods described in this section, for two different stars, neasr the true frequency.
 		$(\ast)$: Arclength and Entropy spectra were inverted to allow direct comparison with the Fourier approximations.
 		$(\dagger)$: The Fourier, Lomb-Scargle and entropy methods present a false peak (in light gray) 
-		when the frequency is very near 1/day; see text for details.
+		when the frequency is very near 1/day; see text for details, and \autoref{fig:entropy-alias} for the behavior of the entropy false peaks.
 	}
 	\label{fig:examples}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.99\textwidth]{img/alias.pdf}
+	\includegraphics[width=0.8\textwidth]{img/alias.pdf}
 	\caption[Detail of the failure mode of Fourier and entropy methods]{
 		Detail of the phase diagram and complex phase curling of the star from \autoref{fig:examples}, very near the false peak at 1.00275/day.
 		The histogram was made with 10 bins on each axis.
@@ -421,6 +421,7 @@ We can take a closer look at the phase diagram and Fourier curling on one of tho
 Then is suddenly clear why the entropy method fails: the dots are distributed phase-wise in a similar fashion as in \autoref{fig:1234-cadence}.
 That leaves a huge gap (in this case in the middle), and if there are many bins with probability zero the entropy would certainly be lower,
 because it is more ordered that way; there are chunks of the phase diagram histogram that are uniform, and therefore the entropy method gives a false positive.
+The specific behavior of these false peaks as a function of the number of zones is examined in \autoref{fig:entropy-alias}.
 
 Something similar happens with the curled figure in the complex plane. As each point is rotated almost $360^\circ$ 
 (again, how much more or less than that is dictated by \autoref{fig:1234-cadence}), and if the radii are all positive that means the centroid would be near the positive reals.
@@ -429,17 +430,19 @@ There is a simple solution: make the mean radius zero. That way, the negative ra
 \autoref{fig:problem} also allow us to understand how the arclength and dispersion spectra are \enquote{immune} to this effect. 
 If we connect the dots of the phase diagram,  at least one line should join the two groups, and it will be a big line.
 So no matter how close get those points on the sides, the big line between them should carry the weight of this strange alignment.
-That works until everything aligns in one clump in the middle, and suddenly there is no line. This behavior deserves further study.
+That works until everything aligns in one clump in the middle, and suddenly there is no line.
+This could be corrected by connecting the $\phi=0$ and the $\phi=1$ points on the phase axis\footnote{
+	This is like a quotient space in topology. The phase diagram is a square, and we join two edges, 
+	and the result is a figure akin to the sides of a cyllinder.
+}, and considering also the arclength between the first and last point: 
+additioning a mixed term $\sqrt{(f_0'-f_N')^2+(\phi_0'-\phi_N')^2}$ to \autoref{eq:arclength}
+would eliminate the possibility of central clumping; the points would be connected in a circular fashion.
+
 On the other side, we defined the empty variance as zero. 
 Therefore the terms corresponding at the empty gaps would just not contribute, neither in the denominator nor in the numerator of \autoref{eq:pooled-variance}.
 It would be as if someone had just cut out the empty columns. The rest is just vertical chaos, having in fact maximal variance,
 so the dispersion method is truly immune with our definitions.
  
-
-
-
-
-
 
 %\section{Pulsation mode determination}
 

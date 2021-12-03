@@ -1,4 +1,33 @@
+
+%The OGLE PL relations on the Magellanic clouds were reproduced with a simple implementation of the Fourier periodogram, 
+%and two tendencies were observed for the fundamental and first overtone pulsation modes.
+%Those two tendencies are more clearly separated when using the mean extinction-free Wesenhit index on the magnitude axis,
+%but in both cases the LMC data showed less dispersion from the linear tendency than the SMC data.
+%
+%Outside the periods corresponding to an integer number of days, all the methods here presented provide good approximations to the pulsation spectrum of a star.
+%These problematic points on the period line are caused by the near-periodic observation cadence (fig),
+%and normalization methods were presented for eliminating these problematic alias peaks on the Fourier, Lomb-Scargle, and dispersion periodograms.
+%The arclength periodogram naturally evades this problem, whereas no solution to this problem could be found for the entropy spectrogram.
+%
+%Python routines implementing the five periodograms were presented, 
+%and the acceleration provided by Numba makes them useful for signal analysis work.
+
+%The uneven sampling was proven a key feature of the data. If measurements had been taken at a cadence of exactly one day,
+%we could not have searched for any period of less than one day, because the periodogram would reflect at each half per day requency, the Nyquist frequency.
+%Therefore, the PL relation would have been limited at $\log P>0$, which cuts in half the first overtone tendency.
+
+
+
+
 \section{Future work}
+
+
+%* Individual dereddening R_I wesenheit index
+%* Pulsation modes without fitting a Fourier series: that information must already be in the spectrum
+%	* The phase is lost when conjugating in (EQUATION), which all method implicitly do except fot the pure Fourier one. For example, in (LISTING single it fourier) the "phase spectum" could be obtained by returning the complex argument of the centroid, and not just its magnitude
+%* Find a way to correct the alias peaks on the entropy periodogram
+
+
 
 % reddening maps: per star wsenheit index
 

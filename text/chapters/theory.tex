@@ -103,19 +103,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	as seen from earth, \textit{i.e.} $\vec{r} = (r,\phi=\frac\pi2-\delta_\odot,\theta=\alpha_\odot)$, $\hat n = (1,\phi=\frac\pi2-\delta,\alpha)$ 
 	The maximum possible value for this correction is $\sim 1 \text{ AU}/c = 16.63 \text{ min } = 0.00577$ Ephemeris days.
 	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.9\textwidth]{img/Heliocentric.pdf}
-		%\captionsetup{width=\textwidth}
-		\caption[Conceptual view of the R\o{}mer delay]{ Conceptual view of the R\o{}mer delay for a signal coming from above (in red). 
-		The comparison is made between the earth at two points of its orbit (blue and green disks) around the sun (yellow disk).
-		\textbf{a)} The distance $\Delta$ that the incoming light has to travel if the earth is in the opposite side of its orbit (green earth) will mean a time delay of $\Delta/c$
-		relative to the nearest part of the orbit (blue earth).
-		The limit value for $\Delta$ is $\sim2$ AU, so the time delay would be around $16$ minutes.
-		\textbf{b)} This time the excess distance is calculated from the sun, and its value is the projection of the sun-to-earth vector to the vector normal to the incoming signal.
-		}
-		\label{fig:romer-delay}
-	\end{figure}
+	
 	
 	
 	\subsubsection{Remark about floating point representations}
@@ -405,9 +393,9 @@ In order to properly study variable star, we need to have solid definitions for 
 		&= Y_0 + R_{X-Y}(X-Y)_0 
 	\end{align*}
 	and thus is indeed free of extinction effects. Through this work, we will use the $V-I$ color index, and the Wesenheit index:
-	$$
-	W_I = I - R_I (V-I)
-	$$
+	\begin{equation}
+	W_I = I - R_I (V-I) \label{eq:wesenheit-i}
+	\end{equation}
 	Where $R_I = \frac{A_I}{E(V-I)} = \frac{A_I}{A_V - A_I}$. 
 	Similarly to the $R_V$ case, $R_I$ has a wide range of values on the literature, even with $R_V=3.1$ fixed \citep[for a discussion see][]{Nataf2015}. 
 	It was measured in the Galactic bulge as $1.080\pm0.007$ by \cite{Pietrukowicz2012}. 
@@ -671,7 +659,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	% put astrophysical consideration of ascending branch in a caption, new figure TODO
 	
 	The consensus is that all of those mechanisms do require exceptional conditions to actually work, 
-	and that could explain why stellar pulsators are indeed rare in the bulk population of stars in the universe,
+	and that could explain why stellar pulsators are indeed rare in the bulk population of stars in the Universe,
 	being approximately one for each $10^5$ stars \citep{Carroll2017}.
 	
 	\subsubsection{Pulsation modes}
