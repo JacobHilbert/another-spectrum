@@ -83,14 +83,33 @@
 
 \chapter*{Resumen}
 
+La relación Período-Luminosidad para estrellas variables Cefeidas es una herramienta importante para medir distancias en la escala intergaláctica cercana.
+Dado que las series de tiempo en astronomía terrestre están usualmente muestreadas de manera no uniforme, 
+deben usarse técnicas alternativas al análisis de Fourier clásico para poder determinar el período de una estrella variable.
+
+Porl o tanto aquí se presentan varios algoritmos para la exploración del espectro de Fourier de una señal arbitrariamente muestreada en el tiempo,
+y se comparan unos con otros en términos de velocidad y robustez.
+El mejor de ellos es usado para encontrar los períodos de las Cefeidas clásicas de las Nubes de Magallanes, usando los datos del projecto OGLE-IV.
+Con estos períodos y con el índice Wesenheit desenrojecido se reproducen las relaciones Período-Luminosidad para las Nubes de Magallanes.
+
 \chapter*{Abstract}
+
+The Period-Luminosity relation for Cepheid variable stars is an important tool to measure distances in the near intergalactic range. 
+As time series in terrestrial astronomy are usually sampled in an uneven manner, 
+alternative techniques to classical Fourier analysis must be used in order to determine the period of a variable star.
+
+Therefore, several algorithms are presented that allow the exploration of the Fourier spectrum of a signal with arbitrary temporal sampling.
+These algorithms are implemented and examined for speed and robustness. 
+The best one is then used to find the periods of the classical Cepheids from the Magellanic Clouds, with data from the OGLE-IV project. 
+Those periods and the Wesenheit extiction-free index are used to plot the Period-Luminosity relations for the Magellanic Clouds.
+
 
 \newpage
 
 \begin{flushright}
 	\textit{
 		I dedicate the prose to Trinidad,        \\
-		for making every morning coffee          \\ 
+		for making the morning coffee            \\
 		that fueled the writing of this document
 	}
 
@@ -99,7 +118,7 @@
 	\textit{
 		But all the code is for Miguel             \\
 		who will not be able to compile it anymore \\ 
-		but I think he would have liked it anyway
+		but I think he would have liked it anyway.
 	}
 \end{flushright}
 
@@ -149,7 +168,7 @@ Finally, I write this couple of words to attempt to express the unmeasurable gra
 \chapter{Results}
 \input{chapters/results.tex}
 
-\chapter{Conclusions}
+\chapter{Conclusions and Future Work}
 \input{chapters/conclusions.tex}
 
 % Appendices

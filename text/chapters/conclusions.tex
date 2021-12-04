@@ -1,25 +1,74 @@
+The Period-Luminosity relations on the Magellanic Clouds were reproduced,
+as the result of processing nearly 9000 classical Cepheids from the OGLE project with a simple implementation of the Fourier periodogram.
+Two linear tendencies were observed, associated with the fundamental and first overtone pulsation modes.
+The Wesenheit index reduced the dispersion on the PL relation, albeit more considerably in the LMC case;
+this is thought to be an effect of the SMC being farther away.
 
-%The OGLE PL relations on the Magellanic clouds were reproduced with a simple implementation of the Fourier periodogram, 
-%and two tendencies were observed for the fundamental and first overtone pulsation modes.
-%Those two tendencies are more clearly separated when using the mean extinction-free Wesenhit index on the magnitude axis,
-%but in both cases the LMC data showed less dispersion from the linear tendency than the SMC data.
-%
-%Outside the periods corresponding to an integer number of days, all the methods here presented provide good approximations to the pulsation spectrum of a star.
-%These problematic points on the period line are caused by the near-periodic observation cadence (fig),
-%and normalization methods were presented for eliminating these problematic alias peaks on the Fourier, Lomb-Scargle, and dispersion periodograms.
-%The arclength periodogram naturally evades this problem, whereas no solution to this problem could be found for the entropy spectrogram.
-%
-%Python routines implementing the five periodograms were presented, 
-%and the acceleration provided by Numba makes them useful for signal analysis work.
+The results were in general agreement with the OGLE-IV reported ones:
+8840 stars with a period found within less than 0.0001 days of the OGLE-IV reported period;
+119 stars were placed in a different pulsation mode on the PL relation, but had a correct secondary period; 
+25 stars had and error in the period between 0.0001 and 0.01 days, and 12 greater than 0.01, none of which could be accounted for.
 
-%The uneven sampling was proven a key feature of the data. If measurements had been taken at a cadence of exactly one day,
-%we could not have searched for any period of less than one day, because the periodogram would reflect at each half per day requency, the Nyquist frequency.
-%Therefore, the PL relation would have been limited at $\log P>0$, which cuts in half the first overtone tendency.
+Outside the frequencies corresponding to an integer per day, all the methods here presented provide good approximations to the pulsation spectrum of a star.
+These problematic points on the frequency grid are caused by the near-periodic observation cadence,
+and normalization methods were presented in order to eliminate these problematic peaks, for all but the entropy periodogram,
+where no workaround could be found. 
+Python routines implementing all five kinds of periodograms were presented,
+and the accelerated compilation provided by Numba makes them usable for signal analysis work.
 
-
+Those problems are integer frequencies were a small price to pay for the other benefits of the uneven sampling.
+As illustrated in \autoref{fig:uneven-advantage} and proven in \autoref{fig:linear-color-pl-lmc}, 
+the search for frequencies larger than the Nyquist frequency of 0.5/day would have been impossible if the data had been evenly sampled with perfect cadence,
+cutting the PL diagram in half, and more importantly, giving the wrong answers for the short period range ($\log P <0.3$).
 
 
-\section{Future work}
+% future work
+
+In order to properly separate the tendencies on the PL diagram, the pulsation mode of each star must be determined.
+Some heuristic methods do exists for this task using a Fourier series decomposition \citep{Zabolotski2005}, 
+and it should be possible to calculate those coefficients from the spectrogram,
+but as the magnitude of the Fourier transform, the information about the phase is lost (see \autoref{eq:conjugate}).
+This magnitude is calculated implicitly by all methods, except for the direct Fourier transform.
+The phase should be recoverable if the absolute value is dropped in \autoref{lst:fourier-single}.
+
+Another nuance that needs more attention is the search grid. 
+Given the number of points and the time span of the data, 
+there should be ways of estimating the more optimal grid on a star by star basis.
+Additionally, the question of which type of grid is preferable (frequency linear, period linear, or logarithmic in both) still remains.
+
+On the more phenomenological level, and as was previously mentioned, 
+each star should have its own $R_I$ for the Wesenheit index calculation, and more so in a dust populated region as the Magellanic Clouds.
+This can be done using the reddening maps of \cite{Reddening2021}, and the coordinates of each star.
+In theory, this would eliminate some of the systematic dispersion of the PL diagram, leaving it only at its intrinsic width,
+and upgrading the precision of the distance determination derived from the diagram later on.
+
+This intrinsic dispersion could be in part a consequence of yet another factor: 
+the position of a star in the PL diagram is certainly not constant in time.
+The Cepheid-ness of a star is just a chapter on its evolutionary history,
+and their periods and mean luminosities reflect this evolution \citep{Turner2006}.
+If those changes could be detected algorithmically,
+only the stable portion of the data would be present in the PL diagram,
+possibly improving further its precision.
+
+
+% pulsation mode determination
+% study the optimal grid
+% multi period stars
+% individual dereddening
+% time dependence of a star position on the PL diagram because stellar evolution
+
+
+
+
+
+%Contrary to intuition, the near-periodic cadence is in fact beneficial,
+% as the uneven sampling was proven a key feature of the data.
+
+% log P > 0.3 
+
+
+%\section{Future work}
+
 
 
 %* Individual dereddening R_I wesenheit index

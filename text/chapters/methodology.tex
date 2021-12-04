@@ -40,16 +40,6 @@ making it an invaluable resource for studying the Magellanic system and the gala
 		1O3O   &     1 &     1 &         0 &     1 &         0 &     1 &     0 \\
 		2O3O   &     1 &     1 &         0 &     1 &         0 &     1 &     0 \\\hline
 		total  &  4706 &  4646 &       289 &  4367 &        10 &  4357 &    50 \\
-		%F      &  2477 &  2428 &  2287 &  2277 &    39 \\
-		%1O     &  1776 &  1766 &  1650 &  1650 &    10 \\
-		%2O     &    26 &    26 &    26 &    26 &     0 \\
-		%F1O    &    95 &    95 &    89 &    89 &     0 \\
-		%1O2O   &   322 &   321 &   305 &   305 &     1 \\
-		%F1O2O  &     1 &     1 &     1 &     1 &     0 \\
-		%1O2O3O &     7 &     7 &     7 &     7 &     0 \\
-		%1O3O   &     1 &     1 &     1 &     1 &     0 \\
-		%2O3O   &     1 &     1 &     1 &     1 &     0 \\\hline
-		%total  &  4706 &  4646 &  4367 &  4357 &    50 \\
 		\end{tabular}
 		\caption[Pulsation mode and filter data distribution for the LMC]{
 			Distribution of the number of stars in the database for the LMC according with their reported pulsation mode.
@@ -73,13 +63,6 @@ making it an invaluable resource for studying the Magellanic system and the gala
 		1O2O   &   239 &   239 &         9 &   230 &         0 &   230 &     0 \\
 		1O2O3O &     1 &     1 &         0 &     1 &         0 &     1 &     0 \\\hline
 		total  &  4944 &  4921 &       224 &  4700 &         3 &  4697 &    20 \\
-		%F      &  2754 &  2739 &  2617 &  2614 &    12 \\
-		%1O     &  1791 &  1783 &  1697 &  1697 &     8 \\
-		%2O     &    91 &    91 &    89 &    89 &     0 \\
-		%F1O    &    68 &    68 &    66 &    66 &     0 \\
-		%1O2O   &   239 &   239 &   230 &   230 &     0 \\
-		%1O2O3O &     1 &     1 &     1 &     1 &     0 \\ \hline
-		%total  &  4944 &  4921 &  4700 &  4697 &    20 \\
 	\end{tabular}
 	\caption[Pulsation mode and filter data distribution for the LMC]{
 		Same as \autoref{tab:LMC} but for the SMC. 
@@ -253,7 +236,7 @@ The best guess for the correct frequency would be where the entropy is minimum.
 A possible implementation of an iteration is given in \autoref{lst:entropy}.
 
 A big improvement can be made by translating the phase-magnitude plane $\{\phi_k,m_k\}$ into a line $\lfloor m_k n_{bins} \rfloor + \phi_k$,
-analogous at making the phase \enquote{decens} and the phase \enquote{units}.
+analogous at making the phase \enquote{tens} and the phase \enquote{units}.
 Over that transformed line, a 1D histogram algorithm can be used with $n_{bins}^2$ number of bins, hence the phase diagram is \enquote{flattened}. 
 That implementation is given in \autoref{lst:entropy-flattened}. 
 This flattening allows the use of very efficient 1D binning algorithms.
@@ -397,7 +380,7 @@ We can take a closer look at the phase diagram and Fourier curling on one of tho
 	\centering
 	\includegraphics[width=0.99\textwidth]{img/examples.pdf}
 	\caption[Example of spectra near the true frequency]{
-		Sample spectra for the five methods described in this section, for two different stars, neasr the true frequency.
+		Sample spectra for the five methods described in this section, for two different stars, near the true frequency.
 		$(\ast)$: Arclength and Entropy spectra were inverted to allow direct comparison with the Fourier approximations.
 		$(\dagger)$: The Fourier, Lomb-Scargle and entropy methods present a false peak (in light gray) 
 		when the frequency is very near 1/day; see text for details, and \autoref{fig:entropy-alias} for the behavior of the entropy false peaks.
@@ -433,9 +416,9 @@ So no matter how close get those points on the sides, the big line between them 
 That works until everything aligns in one clump in the middle, and suddenly there is no line.
 This could be corrected by connecting the $\phi=0$ and the $\phi=1$ points on the phase axis\footnote{
 	This is like a quotient space in topology. The phase diagram is a square, and we join two edges, 
-	and the result is a figure akin to the sides of a cyllinder.
+	and the result is a figure akin to the sides of a cylinder.
 }, and considering also the arclength between the first and last point: 
-additioning a mixed term $\sqrt{(f_0'-f_N')^2+(\phi_0'-\phi_N')^2}$ to \autoref{eq:arclength}
+auditioning a mixed term $\sqrt{(f_0'-f_N')^2+(\phi_0'-\phi_N')^2}$ to \autoref{eq:arclength}
 would eliminate the possibility of central clumping; the points would be connected in a circular fashion.
 
 On the other side, we defined the empty variance as zero. 

@@ -134,7 +134,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.6\textwidth]{img/Spherical_EM.pdf}
-		\caption[Electromagnetic wave propagation through a sperical surface]{
+		\caption[Electromagnetic wave propagation through a spherical surface]{
 			An electromagnetic wave ($\vec E,\vec B$) propagating outwards ($\vec S$) through a spherical surface $\partial \Sigma$ in a vacuum space.
 			The correspondence of the directions of $\vec S,\vec B$ and $\vec E$ with the spherical directions $\hat r,\hat \phi, \hat \theta$ is to be noted.
 		}
@@ -274,7 +274,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	This spectral radiance is conceptually equivalent to the term $\left<\vec S\right>\cdot \hat r$ used in \autoref{eq:poynting} \footnote{
 		The spectral radiance $B_\lambda$ is defined as the energy flux per hertz per second,
 		and is in fact connected with the statistics of the magnitude of the electric field $E(r)$ considered before, 
-		because the different occupation levels of some energies that arise from  the thermodynamical considerations.
+		because the different occupation levels of some energies that arise from  the thermodinamical considerations.
 		Again, refer to the original work of \cite{Planck1901}  for details.
 	}. 
 	With this approximation and with \autoref{eq:luminosity} we can define the monochromatic Flux and Luminosity \citep[Chapter~3, Section~5]{Carroll2017}:
@@ -435,7 +435,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	any interpolation would eventually fail, as it is seen in \autoref{fig:interpolation-failure}.
 	
 
-	But as already stated, the shape of the light curve carries phenomenologic details about the star variation.
+	But as already stated, the shape of the light curve carries phenomenological details about the star variation.
 	In order to recuperate that shape without having to fit the data, and if the period is known,
 	one can define the \textit{phase} $\phi$ of a certain time $t$ as
 	\begin{equation}
@@ -570,7 +570,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	\begin{equation}
 		\left(\frac{3 \Gamma_1-4}{R\rho}\right)\left(-\frac{dP}{dr}\right) = \omega^2 \label{eq:lawe-result}
 	\end{equation}
-	That pressure dependence comes from the pressure gradient equation of stellar evolution (in its hydrodynamical from) \cite[equation 4.18]{Catelan2015}:
+	That pressure dependence comes from the pressure gradient equation of stellar evolution (in its hydrodinamical from) \cite[equation 4.18]{Catelan2015}:
 	\begin{equation}
 		\ddot{r} = -\frac{1}{\rho} \frac{d P}{d r}-\frac{GM}{r^3}
 	\end{equation}
@@ -707,7 +707,7 @@ as if one were to describe several coupled oscillators in terms of their normal 
 This \enquote{correlation} is not precisely defined at this point, but left as an intuitive concept.
 This is done purposefully, as we will present several ways to measure it.
 Any function that express the intensity of the correlation of a given signal with a frequency as independent variable
-would be called a power spectrum. The terms spectrogram, Fourierogram and periodogram are also used through the literature.
+would be called a power spectrum. The terms \textit{spectrogram}, \textit{Fourierogram} and \textit{periodogram} are also used through the literature.
 
 \subsection{Fourier Analysis}
 
@@ -727,7 +727,7 @@ and its called the Fourier transform. The inverse transformation is given by
 where we follow the conventions from \cite{Deeming1975}. In general, $F(\nu)$ would be a complex number.
 The canonical power spectrum is defined as its magnitude:
 \begin{equation}
-	P(\nu) = F^\ast(\nu) F(\nu)
+	P(\nu) = F^\ast(\nu) F(\nu) \label{eq:conjugate}
 \end{equation}
 
 
@@ -967,7 +967,7 @@ The canonical power spectrum is defined as its magnitude:
 	most of the $\mu_j$ would be nonzero. As probabilities, they lie in the $[0,1]$ interval, 
 	making their logarithms negative, adding up to a positive and maximal sum.
 	
-	On the other side, on the ocrrect period there would be many unoccupied zones (see \autoref{fig:offhist2d}), 
+	On the other side, on the correct period there would be many unoccupied zones (see \autoref{fig:offhist2d}), 
 	and therefore most of the $\mu_j$ would be zero. As $\lim_{\mu\to0}\mu \ln \mu = 0$.
 	The growth of the other probabilities cannot compensate for this loss, so the sum is minimum.	
 	This has been rigorously proved by \cite{Cincotta1999II}.
@@ -985,7 +985,7 @@ The canonical power spectrum is defined as its magnitude:
 		\caption[Off-frequency phase diagrams: histograms]{
 			Same as \autoref{fig:offphase} but \enquote{pixelated} phase diagrams, \textit{i.e.} bidimensional histograms.
 			$M=30$ bins were taken on each axis, for a total of $m=900$ zones.
-			The greater columnwise dispersion of the off-phase diagrams is notable, 
+			The greater column-wise dispersion of the off-phase diagrams is notable, 
 			and when the frequency is completely wrong, the image is just noise.
 			On the applications discussed here, the number of bins on each axis are typically between 2 and 10.
 		}

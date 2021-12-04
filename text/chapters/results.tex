@@ -2,20 +2,20 @@
 \section{Data preparation and periodogram calculation}
 
 All the classical Cepheid data from the OGLE download site was downloaded using an script (\autoref{lst:download})
-designed to replicate the folder tree of the site, for better programatic access to the data.
+designed to replicate the folder tree of the site, for better programmatic access to the data.
 The downloaded files amount to $\sim$47 MB.
 
 Next, the pandas library \citep{pandas} was used to perform the statistical analysis shown on \autoref{sec:data}.
 Accordingly to the stated there, only the $I$ magnitude data was used to search for the period.
 
 Following the sample benchmark done on \autoref{fig:runtimes}, 
-the incremental implementation of the Fourier periodogram (\autoref{lst:fourier})) was selected to find the period of each star with $I$ magnitude data.
+the incremental implementation of the Fourier periodogram (\autoref{lst:fourier}) was selected to find the period of each star with $I$ magnitude data.
 A linear frequency grid was used to calculate the periodogram, starting from $\nu_0=0.001$/day ($P= 1000$ days), 
 incrementing on steps of $d\nu = 10^{-5}$/day, up to $\nu_f=4.7$/day ($P=0.212$ days), giving a total of 469900 test frequencies, 
 99000 of which are in the $(1,100)$ days period range.
 With a modification on the implementation, an linear period grid could be used instead with the incremental transform.
 The ideal grid would be linear on $\log P$, as that is the variable in which the PL relation is linear; 
-however, the faster incremental implementation cannot be unsed on an uneven grid, and so the slower Lomb-Scargle or simple Fourier periodogram must be used instead.
+however, the faster incremental implementation cannot be used on an uneven grid, and so the slower Lomb-Scargle or simple Fourier periodogram must be used instead.
 
 As deduced in \autoref{sec:examples-and-aliases}, 
 the magnitude data was normalized to zero mean to prevent finding false peaks caused by the near-periodic cadence of the data.
@@ -26,9 +26,9 @@ the true frequency would be uncertain, and that could be later used as a criteri
 The peak widths at half maximum were calculated, as this is the only measure of the uncertainty of the found frequency at our disposal.
 This frequency uncertainties were never greater than 0.0014/day.
 
-After every star on each Cloud have passed through this process, the results were saved in one structured data file, in this case in the \texttt{JSON} format.
+After every star on each Cloud (with $I$ and $V$ data) have passed through this process, the results were saved in one structured data file, in this case in the \texttt{JSON} format.
 The number of detected peaks on the spectrum, compared to the number of data points available for each star, can be found in \autoref{fig:peaks-n-points}.
-Limits to the number of detected peaks and data points were decided to eliminate outliers from the next step, which is the PL relation, the main result.
+Limits to the number of detected peaks and data points were decided to eliminate outliers from the next step, which is the PL relation.
 
 \begin{figure}
 	\centering
@@ -37,17 +37,18 @@ Limits to the number of detected peaks and data points were decided to eliminate
 		Detected number of peaks plotted against the size of the data for each Cepheid in the Magellanic Clouds.
 		The stars with less than 50 points were considered to have too little data to conclude that the frequency found with the algorithm is indeed the correct one.
 		The same doubt is casted on those stars with a high number of peaks in the spectrum. The limit is 15 peaks for the LMC and 20 for the SMC.
-		Those limits were chosen to maximize the number of outliers discarded from the PL relation (\autoref{fig:pl-result}) whithout discarding seemingly good placed stars in the PL diagram.
+		Those limits were chosen to maximize the number of outliers discarded from the PL relation (\autoref{fig:pl-result}) without discarding seemingly good placed stars in the PL diagram.
+		This leaves 4341 stars in the LMC and 4655 in the SMC.
 	}
 	\label{fig:peaks-n-points}
 \end{figure}
 
 
 \autoref{eq:wesenheit-i} was used to calculate the extinction-free Wesenheit index, 
-with $R_I=1.55$ \citep{OGLE2015,Ulaczyk2013} and the mean $I$ and $V$ mangitude for each star.
+with $R_I=1.55$ \citep{OGLE2015,Ulaczyk2013} and the mean $I$ and $V$ magnitude for each one of the 8996 remaining stars.
 Uncertainty in the mean of each magnitude was also computed, using contribution from two factors.
 The first was compound uncertainty, using the errors reported for each magnitude measurement, calculated as $1/\sigma_{total}=\sqrt{\sum_i 1/\sigma_i^2}$.
-The second factor was estimated via bootstrap, as the standard deviation of the mean from several resamplings of the magnitudes.
+The second factor was estimated via bootstrap, as the standard deviation of the mean from several resampling of the magnitudes.
 The resulting uncertainties were never greater than 0.04 mag, for the selected data. 
 The distribution of uncertainties is plotted on \autoref{fig:uncertainties}, 
 and its corresponding error bars on the PL diagram would be barely even visible.
@@ -57,7 +58,7 @@ and its corresponding error bars on the PL diagram would be barely even visible.
 	\includegraphics[width=\textwidth]{img/PL_realtion.pdf}
 	\caption[Results: PL relation for the Magellanic Clouds]{
 		Period-Luminosity diagrams for classical Cepheids int he Magellanic Clouds, on $I$ magnitude and $W_I$ index.
-		Discarded stars accoring to the criteria presented in \autoref{fig:peaks-n-points} are shown as faint red shadows.
+		Discarded stars according to the criteria presented in \autoref{fig:peaks-n-points} are shown as faint red shadows.
 		In each diagram, two main linear tendencies can be noted, the fundamental and the first overtone tendencies.
 		It is notable how well the Wesenheit index separates the two tendencies, especially in the LMC.
 	}
@@ -73,11 +74,9 @@ Some few stars of the \texttt{2O} mode can be observed at the back of the \textt
 This is of course just a general association, given that we did not perform pulsation mode analysis on these results.
 Also, multimode pulsators like \texttt{F1O} or \texttt{1O2O} cannot be separated from their lowest frequency on this kind of PL diagram.
 
-
-
-The Wesenheit index is as sucessful as expected on reducing the dispersion on the diagram.
+The Wesenheit index is as successful as expected on reducing the dispersion on the diagram.
 This method is just a mean approximation of the reddening, and as such, it is limited, but great separation is achieved on the LMC diagram.
-The disperison, however, is far grater in the SMC compared to the LMC. 
+The dispersion, however, is far grater in the SMC compared to the LMC. 
 Despite this specific dataset having fewer points per star in the SMC, this should not be an artifact of the data, 
 but a result of the SMC being farther away than the LMC, at $62.44 \pm_{stat} 0.47 \pm_{sys}0.81$ kpc 
 and $49.97 \pm_{stat} 0.19 \pm_{sys} 1.11$ kpc respectively \citep{SMC2020,LMC2013}.
@@ -129,7 +128,7 @@ This suggest that a period grid, not a frequency one, was used to produce th OGL
 
 \subsubsection{The horizontal line}
 
-But there is a more intresting feature in that graphic: a very thin line of stars with discrepancy larger than 0.02, 
+But there is a more interesting feature in that graphic: a very thin line of stars with discrepancy larger than 0.02, 
 too well organized to be the result of few data points or poor random sampling.
 The effect is clearly systematic, yet no a priori way of isolating this line from the data was found.
 Manually selecting this region in \autoref{fig:comparison}, 
@@ -157,7 +156,7 @@ that connects the low error results with the horizontal line (2).
 A detailed plot of those points can be seen in \autoref{fig:vertical-discrepancy}. 
 On the selected range, which is somewhat arbitrary on the low error side, there are 13 stars for the LMC and 12 on the SMC.
 Most of those stars are \texttt{1O} pulsators for the LMC and \texttt{F} pulsators for the SMC, 
-and they are placed in between of the two tendencies of the PL diagram, so the missclasification argument presented above does not hold.
+and they are placed in between of the two tendencies of the PL diagram, so the missclassification argument presented above does not hold.
 Like before, no a priori way of detecting these stars was found.
 
 \subsubsection{The true outliers}
@@ -180,8 +179,6 @@ The 10 SMC ones have codes
 \texttt{4195} (\texttt{1O} pulsators); and 
 \texttt{1350} (\texttt{1O2O} pulsator).
 
-% lastly, the true outsiders
-
 \subsection{Secondary peaks in the PL diagram}
 
 A diminished reflection of the spectrum near integer frequencies was found for nearly all individual stars,
@@ -191,12 +188,12 @@ That resulted on the secondary peaks of each star spectrum to form patterns arou
 Some of the frequencies found for some stars lied on that secondary peak zone, indicating that they were not the optimal period for that star.
 This can possibly be solved by refining the search around all the peaks found above the noise of the spectrum.
 As can be seen in \autoref{fig:peaks-n-points}, the number of peaks is of the order of $\sim20$ or less for stars with a reasonable amount of data,
-so this aditional search with a finer grid, perhaps in the interval $[\nu_{peak}-\,d\nu,\nu_{peak}+\,d\nu]$, should not take too much of additional processor time,
+so this additional search with a finer grid, perhaps in the interval $[\nu_{peak}-\,d\nu,\nu_{peak}+\,d\nu]$, should not take too much of additional processor time,
 and can be performed using any of the algorithms discussed in this work, as false peaks have been eliminated in the first run.
 
 A PL diagram on linear frequency of these secondary peaks, demonstrating the analogy with \autoref{fig:uneven-advantage}, is presented on \autoref{fig:linear-color-pl-lmc}.
 Versions of \autoref{fig:pl-result} with those same secondary peaks for both Clouds are in \autoref{fig:color-pl-lmc} and \autoref{fig:color-pl-smc},
-where the missplaced principal peaks of the outliers can be seen lying with the secondary peaks.
+where the misplaced principal peaks of the outliers can be seen lying with the secondary peaks.
 
 
 % additional peaks diagrams on the appendix

@@ -17,17 +17,18 @@
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{img/uneven_advantage.pdf}
-	\caption[Comparison between even and uneven sampled signal past the nyquist limit]{
+	\caption[Comparison between even and uneven sampled signal past the Nyquist limit]{
 		Sample skewed triangular wave sampled two ways: the black dots are sampled one each unit of time.
-		The sample times of the blue dots are very near one sample each unit of time, but have a litte dispersion,
+		The sample times of the blue dots are very near one sample each unit of time, but have a little dispersion,
 		as can be seen in the left histogram.
 		The frequency of the generated data is 3.124 time units.
 		It is clear that the spectrum reflects every half of the sampling time (Nyquist frequency). 
 		On the uneven sampling case, the spectrum does not reflect exactly; there are peaks greater than others,
 		and the differences last until several times past the sampling frequency.
 		The greatest peak is in the correct frequency, and the rest are partially canceled out.
-		This cancellation auments with the dispersion on the sampling times, and the number of data.
-		The detailed curve on the mid-left shows how exactly this happens: if the frequency is high, the dots with take an entire different path on the curve with the slightests of the temporal deviations.
+		This cancellation augments with the dispersion on the sampling times, and the number of data.
+		The detailed curve on the mid-left shows how exactly this happens: if the frequency is high, 
+		the dots with take an entire different path on the curve with the slightest of the temporal deviations.
 	}
 	\label{fig:uneven-advantage}
 \end{figure}
@@ -42,7 +43,7 @@
 		The first peak that can be observed at around $\nu=0.965$/day is the correct frequency for this star.
 		The peaks near $\nu=1$/day are alias peaks, explained on \autoref{fig:problem}.
 		The lower the number of zones, the higher the alias peaks compared to the true peak.
-		At low number of zones there is also considerably less noise with respect to the fourier spectrum 
+		At low number of zones there is also considerably less noise with respect to the Fourier spectrum 
 		(see \autoref{fig:examples} for a comparison), and the process of taking the entropy is faster.
 		This compromise between speed, noise levels and false peak heights should be taken into account 
 		for any application of the entropy periodogram, unless a way to eliminate the false peaks is found,
@@ -70,7 +71,7 @@
 	\caption[Detail of the vertical line on the discrepancy plot]{
 		Detail of the vertical bridge between the zones of low and high discrepancy of \autoref{fig:comparison}.
 		The range used to capture the stars on this vertical line, shown in red, were $-3.8<\log \Delta P < -0.8$ and $0.28 < \log P < 0.32 $.
-		In the SMC case, the line curves at the end, and seemengly continues alognside the horizontal line of high discrepancy.
+		In the SMC case, the line curves at the end, and seemingly continues alongside the horizontal line of high discrepancy.
 	}
 	\label{fig:vertical-discrepancy}
 \end{figure}
