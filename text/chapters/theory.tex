@@ -37,9 +37,9 @@ In order to properly study variable star, we need to have solid definitions for 
 	According to the 2019 redefinition of the International System of Units (SI),
 	one second is exactly \citep{si-brochure}:
 	\begin{equation}
-		1\text{ s} = \frac{9\,192\,631\,770}{\Delta\nu_{\text{Cs}}} \label{eq:SI-second}
+		1\text{ s} = \frac{9\,192\,631\,770}{\Delta\nu_{\text{Cs}}}, \label{eq:SI-second}
 	\end{equation}
-	Where $\Delta\nu_{Cs}$ is the unperturbed ground-state hyperfine transition frequency of ${}^{133}\text{Cs}$, which is a fundamental physical constant.
+	where $\Delta\nu_{Cs}$ is the unperturbed ground-state hyperfine transition frequency of ${}^{133}\text{Cs}$, which is a fundamental physical constant.
 	Then, supported by hundreds of years of experiments in the natural sciences, we measure everything in seconds. 
 	
 	\intent{The Unix Time and the Julian Date}
@@ -58,29 +58,29 @@ In order to properly study variable star, we need to have solid definitions for 
 			\footnote{With exactly $365.25 = 1461/4$ days in a year and 7 days a week, the week days cycle every $\text{LCM}(1461,7)=10227$ days, $=28$ years.}. 
 			The solar number of a (Julian) calendar year $y$ in this cycle is given by
 			\begin{equation}
-				\text{SolarNumber}(y) = \text{mod}(y+8,28) + 1
+				\text{SolarNumber}(y) = \text{mod}(y+8,28) + 1.
 			\end{equation}
 			
 		\item The lunar cycle: 19 years, the number of years in which a moon phase will occur in the same day of the year
 			\footnote{A mean synodic month (time between two full moons) is 29.53059 days. 235 synodic months was sufficiently close to 19 years for the Julian calendar.}.
 			The so called \enquote{Golden Number} of a Julian year $y$ is given by 
 			\begin{equation}
-				\text{GoldenNumber}(y) = \text{mod}(y,19)+ 1
+				\text{GoldenNumber}(y) = \text{mod}(y,19)+ 1.
 			\end{equation}
 			
 		\item the Indiction: a 15 year period for tax census used by the Roman Empire and later by the Holy Roman Empire. Its calculation for a Julian year is:
 			\begin{equation}
-				\text{Indiction}(y) = \text{mod}(y+2,15) + 1
+				\text{Indiction}(y) = \text{mod}(y+2,15) + 1.
 			\end{equation}
 	\end{itemize}
 	
 	The phases on the modulus operations are selected such that historical records make sense. The solution, then to the integer equation 
 	\begin{equation}
-		\text{SolarNumber}(y) = \text{GoldenNumber}(y) = \text{Indiction}(y) = 1
+		\text{SolarNumber}(y) = \text{GoldenNumber}(y) = \text{Indiction}(y) = 1,
 	\end{equation}
 	is, using the Chinese remainder theorem,
 	\begin{equation}
-		y = 3268 + 7980 n
+		y = 3268 + 7980 n,
 	\end{equation}
 	were $n$ is any whole number. Scaliger selected $n=-1$ as the zero point for the Julian Day system, which would be Julian year $-4712$ CE, 
 	and as there was no year 0, that would be Julian $4713$ BCE, or in the Gregorian modern calendar, noon of November 24, 4714 BCE (Epoch).
@@ -96,15 +96,12 @@ In order to properly study variable star, we need to have solid definitions for 
 	the signal is corrected with a delay as if the measurement was taken on the position of the sun.
 	This is called \textbf{Heliocentric Julian Day} (HJD), and that correction is given by (see \autoref{fig:romer-delay}):
 	\begin{equation}
-		\Delta t = \frac{\vec{r}\cdot \hat{n}}{c} = - \frac{r}{c} \left(\cos\delta \cos \delta_{\odot}\cos(\alpha-\alpha_\odot)+ \sin\delta \sin \delta_\odot\right)
+		\Delta t = \frac{\vec{r}\cdot \hat{n}}{c} = - \frac{r}{c} \left(\cos\delta \cos \delta_{\odot}\cos(\alpha-\alpha_\odot)+ \sin\delta \sin \delta_\odot\right),
 	\end{equation}
 	where $\vec{r}$ is the vector sun-to-earth, $\hat{n}$ is the direction of the measurement on earth's sky, 
 	and $(\alpha,\delta),\,(\alpha_\odot,\delta_\odot)$ are the equatorial coordinates of the observed object and the sun respectively, 
 	as seen from earth, \textit{i.e.} $\vec{r} = (r,\phi=\frac\pi2-\delta_\odot,\theta=\alpha_\odot)$, $\hat n = (1,\phi=\frac\pi2-\delta,\alpha)$ 
 	The maximum possible value for this correction is $\sim 1 \text{ AU}/c = 16.63 \text{ min } = 0.00577$ Ephemeris days.
-	
-	
-	
 	
 	\subsubsection{Remark about floating point representations}
 	
@@ -148,16 +145,16 @@ In order to properly study variable star, we need to have solid definitions for 
 	Here, isotropic means that the magnitude of the electric and magnetic fields of the wave would not depend on any angle.
 	In spherical coordinates, for an outgoing wave of frequency $\omega$ and wave number $k$, we have (see \autoref{fig:spherical-em})
 	\begin{equation}
-		\vec E = E(r) \cos(kr-\omega t) \hat\theta \qquad \vec B = B(r) \cos(kr-\omega t) \hat\phi
+		\vec E = E(r) \cos(kr-\omega t) \hat\theta, \qquad \vec B = B(r) \cos(kr-\omega t) \hat\phi,
 	\end{equation}
 	where $B(r)=E(r)/c$. Using Poynting's theorem \citep[\S8.1.2]{Griffiths2013} we can calculate the total energy flux\footnote{All the \enquote{energy fluxes} referred in this section are per unit of time.} through an entire sphere centered at the source.
 	Fist, we calculate the Poynting vector 
 	\begin{equation}
-		\vec S = \frac{\vec E \times \vec B}{\mu_0} = \frac{\cos^2(kr-\omega t)E(r)^2}{c\mu_0} \,\hat r
+		\vec S = \frac{\vec E \times \vec B}{\mu_0} = \frac{\cos^2(kr-\omega t)E(r)^2}{c\mu_0} \,\hat r,
 	\end{equation}
 	and its temporal mean 
 	\begin{equation}
-		\left<\vec S \right> = \frac{\omega}{2\pi}\int_0^{2\pi/\omega} \frac{\cos^2(kr-\omega t)E(r)^2}{c\mu_0} \,\hat r\;dt = \frac{E(r)^2}{2c\mu_0}\,\hat r \label{eq:poynting}
+		\left<\vec S \right> = \frac{\omega}{2\pi}\int_0^{2\pi/\omega} \frac{\cos^2(kr-\omega t)E(r)^2}{c\mu_0} \,\hat r\;dt = \frac{E(r)^2}{2c\mu_0}\,\hat r. \label{eq:poynting}
 	\end{equation}
 
 	Its flux is then the energy density flux through the whole spherical surface $\Sigma$ of radius $r$, also called Luminosity
@@ -165,7 +162,7 @@ In order to properly study variable star, we need to have solid definitions for 
 		L = \oint_{\partial\Sigma} \left<\vec S\right> \cdot d\vec{A} 
 			= \oint_{\partial\Sigma} \left<\vec S\right> \cdot \hat r \; r^2 d\Omega
 			= \oint_{\partial\Sigma} \frac{E(r)^2 r^2}{2c\mu_0} d\Omega
-			= \frac{2\pi r^2  E(r)^2}{c\mu_0} \label{eq:luminosity}
+			= \frac{2\pi r^2  E(r)^2}{c\mu_0}. \label{eq:luminosity}
 	\end{equation}
 
 	But the luminosity should \textit{not} be a function of the radius. 
@@ -177,13 +174,13 @@ In order to properly study variable star, we need to have solid definitions for 
 	calculate the energy flux through a properly aligned detector of known area $A$,
 	simply known as Flux	
 	\begin{equation}
-		F = \int_{S} \left<\vec S\right> \cdot \hat r \; dA = \frac{E(r)^2 A}{2 c \mu_0}
+		F = \int_{S} \left<\vec S\right> \cdot \hat r \; dA = \frac{E(r)^2 A}{2 c \mu_0},
 	\end{equation}
 	where the integration occurs along the surface $S$ of the detector, which typically would be flat surface, 
 	but considered here as a section of a sphere with a radius so immense that the difference is meaningless.
 	As $E(r)\propto 1/r$, $F\propto 1/r^2$,  or equivalently, 
 	\begin{equation}
-		F(r)=\frac{L A}{4\pi r^2} \label{eq:flux}
+		F(r)=\frac{L A}{4\pi r^2}. \label{eq:flux}
 	\end{equation}
 	
 	\subsubsection{Logarithmic scales}
@@ -197,14 +194,14 @@ In order to properly study variable star, we need to have solid definitions for 
 	If we are confident in our measurement of $F_a(r_0)$, we could measure the fluxes relative to $F_a(r_0)$, 
 	and define a new logarithmic unit for the brightness of any object $b$ as
 	\begin{equation}
-		\mathcal{F}_b(r) = \alpha \ln\left(\frac{F_b(r)}{F_a(r_0)}\right) \label{eq:general-magnitude}
+		\mathcal{F}_b(r) = \alpha \ln\left(\frac{F_b(r)}{F_a(r_0)}\right), \label{eq:general-magnitude}
 	\end{equation}
 	where $\alpha$ is a free parameter of our unit system. 
 	That way, the \enquote{brightness} difference between a measure of object $b$ at distances $r_1$ and $r_2$ would be
 	\begin{equation}
 		\Delta \mathcal{F}_b = \mathcal{F}_b(r_2) - \mathcal{F}_b(r_1) 
 			= \alpha \ln\left(\frac{F_b(r_2)}{F_b(r_1)}\right)
-			= -2\alpha \ln\left(\frac{r_2}{r_1}\right)
+			= -2\alpha \ln\left(\frac{r_2}{r_1}\right),
 			\label{eq:general-distance-modulus}
 	\end{equation}
 	where we used \autoref{eq:flux} as before. 
@@ -219,22 +216,22 @@ In order to properly study variable star, we need to have solid definitions for 
 	That means that a magnitude 5 object would have a flux $F_b = F_a(r_0)/100$. 
 	Replacing that in \autoref{eq:general-magnitude} and solving for $\alpha$ results in
 	$$
-		5 = \alpha \ln\frac{1}{100} \qquad \Rightarrow \qquad \alpha = \alpha = -\frac{5}{\ln 100} = -\frac{5}{\log_{10}(100)\ln(10)} = -\frac{2.5}{\ln 10}
+	5 = \alpha \ln\frac{1}{100} \qquad \Rightarrow \qquad \alpha = \alpha = -\frac{5}{\ln 100} = -\frac{5}{\log_{10}(100)\ln(10)} = -\frac{2.5}{\ln 10},
 	$$
 	which allows us to rewrite \autoref{eq:general-magnitude} as 
 	\begin{equation}
-		\mathcal{M}_b(r) = -2.5 \log_{10}\left(\frac{F_b(r)}{F_a(r_0)}\right) \label{eq:magnitude}
+		\mathcal{M}_b(r) = -2.5 \log_{10}\left(\frac{F_b(r)}{F_a(r_0)}\right), \label{eq:magnitude}
 	\end{equation}
 	and \autoref{eq:general-distance-modulus} as
 	\begin{equation}
 		\Delta\mathcal{M}_b = \mathcal{M}_b(r_2) - \mathcal{M}_b(r_1) 
 			= -2.5\log_{10}\left(\frac{F_b(r_2)}{F_b(r_1)}\right) 
-			=  5 \log_{10}\left(\frac{r_2}{r_1}\right)
+			=  5 \log_{10}\left(\frac{r_2}{r_1}\right),
 		\label{eq:magnitude-delta}
 	\end{equation}
 	which implies that a positive difference in magnitude of $1$ corresponds to a flux ratio $f$ of
 	$$
-		1 = -2.5 \log_{10}(f) \qquad \Rightarrow \qquad f = 10^{-1/2.5} = 0.3981
+		1 = -2.5 \log_{10}(f) \qquad \Rightarrow \qquad f = 10^{-1/2.5} = 0.3981,
 	$$
 	and correspondingly, a negative difference in one magnitude corresponds to $10^{1/2.5}=2.51188$ times the flux.
 	
@@ -249,15 +246,17 @@ In order to properly study variable star, we need to have solid definitions for 
 	With the reference flux, we can measure the flux of any light source and calculate its \textbf{apparent magnitude} $m$,
 	which for an object $b$ is at a distance $r_b$ is defined using \autoref{eq:magnitude} as
 	\begin{equation}
-		m = -2.5 \log\left(\frac{F_b(r_b)}{F_0}\right)
+		m = -2.5 \log\left(\frac{F_b(r_b)}{F_0}\right).
 	\end{equation}
+	
 	By the convention $r_0=10\text{ pc}$ the \textbf{absolute magnitude} is defined as
 	\begin{equation}
-		M = -2.5 \log\left(\frac{F_b(10\text{ pc})}{F_0}\right)
+		M = -2.5 \log\left(\frac{F_b(10\text{ pc})}{F_0}\right).
 	\end{equation}
+	
 	If you know the distance $r_b$ and the apparent magnitude, you can calculate the absolute magnitude using \autoref{eq:magnitude-delta}:
 	\begin{equation}
-		m-M = 5 \log\left(\frac{r_b}{10 \text{ pc}}\right) \label{eq:distance-modulus}
+		m-M = 5 \log\left(\frac{r_b}{10 \text{ pc}}\right), \label{eq:distance-modulus}
 	\end{equation}
 	which is known as the distance modulus.
 	
@@ -269,8 +268,9 @@ In order to properly study variable star, we need to have solid definitions for 
 	But of course the energy of an electromagnetic wave depends on its wavelength. 
 	For a black body, this is governed by the Planck's Law \citep{Planck1901}, stating that the spectral radiance
 	\begin{equation}
-		B_\lambda(T) = \frac{2hc^2}{\lambda^5}\left(e^{\frac{hc}{\lambda k_B T}}-1\right)^{-1}
+		B_\lambda(T) = \frac{2hc^2}{\lambda^5}\left(e^{\frac{hc}{\lambda k_B T}}-1\right)^{-1}.
 	\end{equation}
+	
 	This spectral radiance is conceptually equivalent to the term $\left<\vec S\right>\cdot \hat r$ used in \autoref{eq:poynting} \footnote{
 		The spectral radiance $B_\lambda$ is defined as the energy flux per hertz per second,
 		and is in fact connected with the statistics of the magnitude of the electric field $E(r)$ considered before, 
@@ -279,13 +279,14 @@ In order to properly study variable star, we need to have solid definitions for 
 	}. 
 	With this approximation and with \autoref{eq:luminosity} we can define the monochromatic Flux and Luminosity \citep[Chapter~3, Section~5]{Carroll2017}:
 	\begin{equation}
-		F_\lambda \;d\lambda = \frac{L_\lambda A}{4\pi r^2} \;d\lambda = B_\lambda\left(\frac{R}{r}\right)^2 \;d\lambda
+		F_\lambda \;d\lambda = \frac{L_\lambda A}{4\pi r^2} \;d\lambda = B_\lambda\left(\frac{R}{r}\right)^2 \;d\lambda,
 	\end{equation}
 	where $R$ is the radius of the black body (the emitting sphere) and $r$ is the distance where the flux is measured.
 	One can integrate that to obtain the Stephan-Boltzmann law:
 	\begin{equation}
-		L = 4\pi R^2 \sigma T^4
+		L = 4\pi R^2 \sigma T^4.
 	\end{equation}
+	
 	With this equation we can deduce a way to calculate $F_{0\lambda}$, the standard flux at any given wavelength; 
 	we have the standard luminosity: $L_0=3.0128\times10^{28}\text{ W}$, 
 	and the Stefan-Boltzmann constant is $\sigma=5.6703744\times10^{-8}\frac{\text{W}}{\text{m}^2\text{K}^4}$. 
@@ -339,11 +340,9 @@ In order to properly study variable star, we need to have solid definitions for 
 	Relative magnitudes are presented as the filter letters: $B$ would be the blue apparent magnitude.
 	
 	If the transmittance function of a filter \enquote{X} is denoted $T_X(\lambda)$, the apparent magnitude $X$ is physically obtained by the process
-	
 	\begin{equation}
-		X = \int_0^\infty T_X(\lambda) R(\lambda) F(\lambda) \,d\lambda
+		X = \int_0^\infty T_X(\lambda) R(\lambda) F(\lambda) \,d\lambda,
 	\end{equation}
-	
 	where $F(\lambda)$ would be the monochromatic flux (the light spectrum) of the star, 
 	and $R(\lambda)$ would be the optical response of the instrumental system used to take the measure, without the filter
 	\footnote{this would include things like the optical response of the telescope and mirrors, 
@@ -364,11 +363,12 @@ In order to properly study variable star, we need to have solid definitions for 
 	Continuing with the filter X example, if we denote extinction-free quantities by the subscript 0, 
 	and this additive extinction on the filter X by $A_X$, we have the full extent of \autoref{eq:distance-modulus}:
 	\begin{equation}
-		X = X_0 + A_X = M_X + 5 \log\left(\frac{r}{10 \text{ pc}}\right) + A_X \label{eq:extinction-distance-modulus}
+		X = X_0 + A_X = M_X + 5 \log\left(\frac{r}{10 \text{ pc}}\right) + A_X. \label{eq:extinction-distance-modulus}
 	\end{equation}
+	
 	Astronomers define color indexes between pairs of filters as the difference on apparent magnitudes. Using \autoref{eq:extinction-distance-modulus}
 	\begin{equation}
-		X - Y = (M_X - M_Y) + (A_X - A_Y) = (X_0 - Y_0 )+ E(X-Y) \label{eq:color-index}
+		X - Y = (M_X - M_Y) + (A_X - A_Y) = (X_0 - Y_0 )+ E(X-Y), \label{eq:color-index}
 	\end{equation}
 	where $X_0-Y_0$ is called the extinction-free color index, sometimes denoted $(X-Y)_0$,
 	and $E(X-Y) = A_X - A_Y$ is called the color excess. 
@@ -384,19 +384,19 @@ In order to properly study variable star, we need to have solid definitions for 
 	}
 	index \citep{Madore1982} is defined as
 	\begin{equation}
-		W_{X-Y} = Y - R_{X-Y} (X-Y) \label{eq:wesenheit}
+		W_{X-Y} = Y - R_{X-Y} (X-Y), \label{eq:wesenheit}
 	\end{equation}
 	which upon expanding turns into
 	\begin{align*}
 		W_{X-Y} &= Y_0 + A_Y - \frac{A_Y}{A_X - A_Y}[ (M_X-M_Y) + (A_X - A_Y) ] \\ 
 		&= Y_0 - \frac{A_Y}{A_X - A_Y} (M_X-M_Y)  \\ 
-		&= Y_0 + R_{X-Y}(X-Y)_0 
+		&= Y_0 + R_{X-Y}(X-Y)_0, 
 	\end{align*}
 	and thus is indeed free of extinction effects. Through this work, we will use the $V-I$ color index, and the Wesenheit index:
 	\begin{equation}
-	W_I = I - R_I (V-I) \label{eq:wesenheit-i}
+	W_I = I - R_I (V-I), \label{eq:wesenheit-i}
 	\end{equation}
-	Where $R_I = \frac{A_I}{E(V-I)} = \frac{A_I}{A_V - A_I}$. 
+	where $R_I = \frac{A_I}{E(V-I)} = \frac{A_I}{A_V - A_I}$. 
 	Similarly to the $R_V$ case, $R_I$ has a wide range of values on the literature, even with $R_V=3.1$ fixed \citep[for a discussion see][]{Nataf2015}. 
 	It was measured in the Galactic bulge as $1.080\pm0.007$ by \cite{Pietrukowicz2012}. 
 	Using the tables from \cite{Schlegel1998} and \cite{Schlafly2011} yields $1.411$ and $1.217$ respectively, for the Landolt filters.
@@ -439,7 +439,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	In order to recuperate that shape without having to fit the data, and if the period is known,
 	one can define the \textit{phase} $\phi$ of a certain time $t$ as
 	\begin{equation}
-		\phi(t) = \frac{\text{mod}(t-t_0,P)}{P} = \text{mod}_1\left(\frac{t-t_0}{P}\right) \label{eq:phase}
+		\phi(t) = \frac{\text{mod}(t-t_0,P)}{P} = \text{mod}_1\left(\frac{t-t_0}{P}\right), \label{eq:phase}
 	\end{equation}
 	where $t_0$ is called the ephemeris time, and is commonly taken as the point with maximum brightness (minimum magnitude).
 	The first definition is just the time that has passed since the last maximum divided by the period, 
@@ -553,11 +553,12 @@ In order to properly study variable star, we need to have solid definitions for 
 	there would be an outward force $P\,A=P\;2\pi r^2$ opposed by the gravitational pull $GMm/r^2$.
 	This naive equation of motion would then be
 	\begin{equation}
-		m \ddot{r} = P 4\pi r^2 - \frac{GMm}{r^2} \label{eq:period-density-motion}
+		m \ddot{r} = P 4\pi r^2 - \frac{GMm}{r^2}. \label{eq:period-density-motion}
 	\end{equation}
+	
 	After a painful process of linearization, we will get an equivalent to the Linear Adiabatic Wave Equation (LAWE):
 	\begin{equation}
-		-\frac{1}{r^4 \rho} \frac{d}{dr}\left(\Gamma_1P r^4 \frac{d\eta}{dr}\right) - \frac{1}{\rho r}\left(\frac{d}{dr}\left[\left(3\Gamma_1-4\right)P\right]\right)\eta = \omega^2 \eta \label{eq:lawe}
+		-\frac{1}{r^4 \rho} \frac{d}{dr}\left(\Gamma_1P r^4 \frac{d\eta}{dr}\right) - \frac{1}{\rho r}\left(\frac{d}{dr}\left[\left(3\Gamma_1-4\right)P\right]\right)\eta = \omega^2 \eta, \label{eq:lawe}
 	\end{equation}
 	where perturbations on $r$ of the form $\xi = \eta e^{i\omega t}$ have been considered, $\rho$ is the mean density and $\Gamma_1$ is the first adiabatic exponent\footnote{
 		$\Gamma_1=5/3$ for an ideal gas, and it is the value recommended by \cite{Cox1980}. 
@@ -568,19 +569,21 @@ In order to properly study variable star, we need to have solid definitions for 
 	In our simplistic model, the amplitude does not depend on the position of the spherical shell, so $\frac{d\eta}{dr}=0$, and the first term vanishes.
 	We shall take away all the radial dependencies, except of course for that of the pressure, as we are considering sound waves:
 	\begin{equation}
-		\left(\frac{3 \Gamma_1-4}{R\rho}\right)\left(-\frac{dP}{dr}\right) = \omega^2 \label{eq:lawe-result}
+		\left(\frac{3 \Gamma_1-4}{R\rho}\right)\left(-\frac{dP}{dr}\right) = \omega^2. \label{eq:lawe-result}
 	\end{equation}
+	
 	That pressure dependence comes from the pressure gradient equation of stellar evolution (in its hydrodynamical from) \cite[equation 4.18]{Catelan2015}:
 	\begin{equation}
-		\ddot{r} = -\frac{1}{\rho} \frac{d P}{d r}-\frac{GM}{r^3}
+		\ddot{r} = -\frac{1}{\rho} \frac{d P}{d r}-\frac{GM}{r^3},
 	\end{equation}
 	which we can use in equilibrium ($\ddot{r}=0$) on \autoref{eq:lawe-result} to get
 	$$
-	\omega^2 = (3\Gamma_1-4)\frac{GM}{R^3}
+	\omega^2 = (3\Gamma_1-4)\frac{GM}{R^3}.
 	$$
-	And in terms of the period $\Pi$ and the mean density $\rho=M/(\frac{4}{3}\pi R^3)$
+	
+	In terms of the period $\Pi$ and the mean density $\rho=M/(\frac{4}{3}\pi R^3)$, we finally have
 	\begin{equation}
-		\Pi = \frac{2\pi}{\sqrt{(3\Gamma_1-4)\frac{4}{3}\pi G \rho}} \label{eq:period-density-relation}
+		\Pi = \frac{2\pi}{\sqrt{(3\Gamma_1-4)\frac{4}{3}\pi G \rho}}. \label{eq:period-density-relation}
 	\end{equation}
 	
 	This is usually just a rough estimation of the order of magnitude of the period. 
@@ -627,12 +630,13 @@ In order to properly study variable star, we need to have solid definitions for 
 		\left.\begin{matrix}
 			\text{H I} &\to &\text{H II} & \text{at} & 13.5984345997(02\pm12) \text{ eV} \\
 			\text{He I} &\to &\text{He II} & \text{at} &  24.5873890(90\pm25) \text{ eV}
-		\end{matrix}\right\} \text{(first ionization)}
+		\end{matrix}\right\} \text{(first ionization)},
 	$$
 	and one deeper layer where the Helium experiences its second ionization:
 	$$
-		\text{He II} \to \text{He III}\quad \text{at}\quad 54.4177654(86\pm25) \text{ eV} \qquad \text{(second ionization)}
+		\text{He II} \to \text{He III}\quad \text{at}\quad 54.4177654(86\pm25) \text{ eV} \qquad \text{(second ionization)}.
 	$$
+	
 	Those energies \citep{NIST_ASD} put all those transitions in the ultraviolet region of the electromagnetic spectrum.
 	The ionizations \enquote{leak} a fraction of the energy that otherwise would have been spent on increasing the temperature.
 	As the temperature increase is less prominent, the density term in Kramers law dominates, and therefore the opacity increases.
@@ -718,16 +722,16 @@ if interrogated well enough.
 Then, we will define the basics of the theory. If we have a theoretical signal $f(t)$, that is mathematically well-behaved,
 its representation in frequency space would be given by the function
 \begin{equation}
-	F(\nu) = \int_{-\infty}^\infty f(t) e^{2\pi i \nu t} dt \label{eq:fourier-transform}
+	F(\nu) = \int_{-\infty}^\infty f(t) e^{2\pi i \nu t} dt, \label{eq:fourier-transform}
 \end{equation}
 and its called the Fourier transform. The inverse transformation is given by 
 \begin{equation}
-	f(t) = \int_{-\infty}^{\infty} F(\nu) e^{-2\pi i \nu t} d\nu
+	f(t) = \int_{-\infty}^{\infty} F(\nu) e^{-2\pi i \nu t}, d\nu
 \end{equation}
 where we follow the conventions from \cite{Deeming1975}. In general, $F(\nu)$ would be a complex number.
 The canonical power spectrum is defined as its magnitude:
 \begin{equation}
-	P(\nu) = F^\ast(\nu) F(\nu) \label{eq:conjugate}
+	P(\nu) = F^\ast(\nu) F(\nu). \label{eq:conjugate}
 \end{equation}
 
 
@@ -742,8 +746,9 @@ The canonical power spectrum is defined as its magnitude:
 	as if that phase were not seen as the fraction of a period, but as the fraction of a rotation.
 	This is made to eliminate the need for a modulus operation. For each data point, our definitions would be
 	$$
-	\phi_k = \frac{t_k-t_0}{P} = \frac{\omega}{2\pi}(t_k-t_0) \qquad \psi_k = \omega(t_k-t_0)
+	\phi_k = \frac{t_k-t_0}{P} = \frac{\omega}{2\pi}(t_k-t_0), \qquad \psi_k = \omega(t_k-t_0).
 	$$
+	
 	That way, the angular phase $\psi_k$ corresponds to the argument of a typical sinusoidal function $\sin(\omega(t_k-t_0))$.
 	The phase diagram was a (temporal) phase against magnitude plot, but we can construct a polar plot with these $\phi_k$ as angles and the magnitudes ($f_k$) as radii.
 	Such comparison of linear-to-angular representations can be seen in \autoref{fig:complex-phase}.
@@ -776,11 +781,12 @@ The canonical power spectrum is defined as its magnitude:
 	The most natural way to discern between noise and patterns in this case would be to look at the centroid of the curled figure. 
 	In the complex plane this is just the mean of the points:
 	\begin{equation}
-		C = \frac{1}{N}\sum_{k=1}^N f_k e^{i \omega (t_k-t_0)} \label{eq:centroid}
+		C = \frac{1}{N}\sum_{k=1}^N f_k e^{i \omega (t_k-t_0)}. \label{eq:centroid}
 	\end{equation}
+	
 	If we drop the $1/N$ factor and the ephemeris $t_0$, and express it in normal frequency terms $\nu=\omega/(2\pi)$, we get the general discrete Fourier transform:
 	\begin{equation}
-		F(\nu) = \sum_{k=1}^N f_k e^{2\pi i \nu t_k} \label{eq:fourier}
+		F(\nu) = \sum_{k=1}^N f_k e^{2\pi i \nu t_k}, \label{eq:fourier}
 	\end{equation} 
 	as defined by \cite{Deeming1975,Thomson1971,Schuster1898}. 
 	The power spectrum in this case would be proportional to the magnitude of the centroid of the Fourier curl, 
@@ -834,7 +840,7 @@ The canonical power spectrum is defined as its magnitude:
 	there is an even simpler one. We could define the correlation of the signal $\{t_k,f_k\}$ with a frequency $\nu$ as 
 	how well does the signal is fitted by the model
 	$$
-	f_k + \epsilon_k = A \cos(2\pi \nu t_k +\phi)
+	f_k + \epsilon_k = A \cos(2\pi \nu t_k +\phi),
 	$$
 	where $\epsilon_k$ are independent, normally distributed error terms, and $A$ and $\phi$ are the model parameters.
 	In the literature the model is often presented as $A\sin(\omega t_k)+B\cos(\omega t_k)$, 
@@ -842,12 +848,13 @@ The canonical power spectrum is defined as its magnitude:
 	After the least squares minimization, the coefficient of determination of the fit is given by \citep{Lomb1976,Scargle1982}
 	\begin{equation}
 		R^2(\omega) \propto \frac{\left(\sum_j f_j \cos\omega (t_j-\tau_\omega)\right)^2}{\sum_j \cos^2\omega(t_j-\tau_\omega)}+
-		\frac{\left(\sum_j f_j \sin\omega (t_j-\tau_\omega)\right)^2}{\sum_j \sin^2\omega(t_j-\tau_\omega)} \label{eq:lomb-scargle}
+		\frac{\left(\sum_j f_j \sin\omega (t_j-\tau_\omega)\right)^2}{\sum_j \sin^2\omega(t_j-\tau_\omega)}, \label{eq:lomb-scargle}
 	\end{equation}
 	with
 	\begin{equation}
-		\tau_\omega = \frac{1}{2\omega}\arctan\left(\frac{\sum_j \sin 2 \omega t_j}{\sum_j \cos 2 \omega t_j}\right)  \label{eq:tau}
+		\tau_\omega = \frac{1}{2\omega}\arctan\left(\frac{\sum_j \sin 2 \omega t_j}{\sum_j \cos 2 \omega t_j}\right).  \label{eq:tau}
 	\end{equation}
+	
 	This $R^2$ can be thought as a first order approximation of the Fourier spectrum, as is lacking the high order terms,
 	but it is good enough to discern the peaks of the spectrum.
 	%Because of that, this spectrogram is less noisy, something that could be preferred in some cases.
@@ -878,7 +885,7 @@ The canonical power spectrum is defined as its magnitude:
 	Therefore, one way to directly measure the dispersion of the phase diagram is to join all the adjacent points with a line, and calculate its length.
 	Mathematically, the arclength $L$ of the diagram would be:
 	\begin{equation}
-		L = \sum_{k=0}^{N-1} \sqrt{(f_k'-f_{k+1}')^2+(\phi_k'-\phi_{k+1}')^2} \label{eq:arclength}
+		L = \sum_{k=0}^{N-1} \sqrt{(f_k'-f_{k+1}')^2+(\phi_k'-\phi_{k+1}')^2}, \label{eq:arclength}
 	\end{equation}
 	where \textit{the phases have to be sorted}, hence the primes. This is important: $\phi_k'$ is \textit{not} the phase of $t_k$, but the $k$-th lowest phase, 
 	and $f_k'$ its corresponding magnitude, not the magnitude at time $t_k$.
@@ -924,16 +931,16 @@ The canonical power spectrum is defined as its magnitude:
 	Then we could use the arclength method with the centroid of the point on those parts, but this does not turn out to be very useful.
 	An alternative is the method proposed by \cite{Stellingwerf1978}, which defines the global variance of the phase diagram as
 	\begin{equation}
-		\sigma^2 = \frac{\sum_k^N (f_k - \bar{f})^2}{N-1}
+		\sigma^2 = \frac{\sum_k^N (f_k - \bar{f})^2}{N-1},
 	\end{equation}
 	and a sort of moving variance
 	\begin{equation}
-		s_j^2 = \frac{\sum_k^{n_j} (f_k-\bar{f}_j)^2}{n_j-1}
+		s_j^2 = \frac{\sum_k^{n_j} (f_k-\bar{f}_j)^2}{n_j-1},
 	\end{equation}
 	where the sum is performed over the $n_j$ points in the $j$-th interval, $j\in[1,M]$.
 	The pooled variance for the $M$ samples would be 
 	\begin{equation}
-		s^2 = \frac{\sum_j^M (n_j-1)s^2}{\sum_j^N n_j -M} \label{eq:pooled-variance}
+		s^2 = \frac{\sum_j^M (n_j-1)s^2}{\sum_j^N n_j -M}, \label{eq:pooled-variance}
 	\end{equation}
 	and the statistic to consider will be defined as $\Theta=s^2/\sigma^2$. 
 	If the frequency used to calculate the phases is wrong, $\Theta\approx 1$, and if its right or nearly right, 
@@ -956,8 +963,9 @@ The canonical power spectrum is defined as its magnitude:
 	the probability $\mu_j$ for a point to be inside any given zone is just the points inside that zone divided by the total number of points.
 	The entropy of this configuration in the \cite{Shannon1948} sense is 
 	\begin{equation}
-		S = - \sum_j^m \mu_j \ln(\mu_j) \label{eq:entropy}
+		S = - \sum_j^m \mu_j \ln(\mu_j). \label{eq:entropy}
 	\end{equation}
+	
 	As already discussed, if the test period is off, we expect the phase diagram to be populated everywhere; 
 	therefore those probabilities would be uniform, and the entropy would be maximum.
 	In the correct period the probabilities for each zone are heavily unbalanced towards the occupied spaces,
@@ -991,41 +999,4 @@ The canonical power spectrum is defined as its magnitude:
 		}
 		\label{fig:offhist2d}
 	\end{figure}
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	

@@ -287,7 +287,7 @@ For each frequency $\nu$ in the search array, being $t$ the time array and $m$ t
 	\item return the coefficient of determination
 	$$
 	R^2 = \frac12 \left(\frac{(c_\tau mC + s_\tau mS)^2}{c_\tau^2 CC + 2 c_\tau s_\tau CS + s_\tau^2 SS}
-	+ \frac{(c_\tau mS-s_\tau mC)^2}{c_\tau^2 SS + 2 c_\tau s_\tau CS + s_\tau^2 CC}\right)
+	+ \frac{(c_\tau mS-s_\tau mC)^2}{c_\tau^2 SS + 2 c_\tau s_\tau CS + s_\tau^2 CC}\right).
 	$$
 \end{itemize}
 
@@ -307,11 +307,10 @@ there is no worse nor better way to search for it than in an evenly spaced frequ
 
 The idea behind this optimization is that if the frequencies are of the form $\nu_j = \nu_{j-1} + \Delta \nu$, the centroid from \autoref{eq:centroid} 
 can be written (element-wise) as
-
 \begin{equation}
-	C(\nu_j)_k = f_k e^{2i\pi (\nu_{j-1}+\Delta \nu) t_k} = f_k e^{2i\pi \nu_{j-1} t_k} e^{2i\pi \Delta \nu t_k} = C(\nu_{j-1})_k e^{2i\pi \Delta \nu t_k}
+	C(\nu_j)_k = f_k e^{2i\pi (\nu_{j-1}+\Delta \nu) t_k} = f_k e^{2i\pi \nu_{j-1} t_k} e^{2i\pi \Delta \nu t_k} = C(\nu_{j-1})_k e^{2i\pi \Delta \nu t_k},
 \end{equation}
-Where $j$ goes over the frequencies and $k$ over times/magnitudes. 
+where $j$ goes over the frequencies and $k$ over times/magnitudes. 
 The array $D_k = e^{2i\pi \Delta \nu t_k}$ is constant, 
 so the coordinates of the \enquote{curled object} in the complex plane that we took the centroid off (see \autoref{fig:complex-phase-off})
 for a certain frequency, can be calculated from the last coordinates by just multiplying element-wise by $D$.
