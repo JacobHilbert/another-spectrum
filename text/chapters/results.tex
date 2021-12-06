@@ -26,7 +26,9 @@ the true frequency would be uncertain, and that could be later used as a criteri
 The peak widths at half maximum were calculated, as this is the only measure of the uncertainty of the found frequency at our disposal.
 This frequency uncertainties were never greater than 0.0014/day.
 
-After every star on each Cloud (with $I$ and $V$ data) have passed through this process, the results were saved in one structured data file, in this case in the \texttt{JSON} format.
+After every star on each Cloud (with $I$ and $V$ data) have passed through this process, the results were saved in one structured data file, in this case in the \texttt{JSON} format\footnote{
+	all the code to reproduce these results and figures is available in \href{https://github.com/JacobHilbert/another-spectrum/}{this github repository}.
+}.
 The number of detected peaks on the spectrum, compared to the number of data points available for each star, can be found in \autoref{fig:peaks-n-points}.
 Limits to the number of detected peaks and data points were decided to eliminate outliers from the next step, which is the PL relation.
 
@@ -85,7 +87,7 @@ and $49.97 \pm_{stat} 0.19 \pm_{sys} 1.11$ kpc respectively \citep{SMC2020,LMC20
 
 
 Some disperse points in the PL diagram were also present in the OGLE results. 
-Those stars could be just missclassified, something that occurs fairly often \citep[see for example Table 1 of][]{OGLE2016};
+Those stars could be just misclassified, something that occurs fairly often \citep[see for example Table 1 of][]{OGLE2016};
 some stars previously thought to be classical Cepheids turned out to be of the RR Lyr\ae{} class,
 or anomalous Cepheids, or even Eclipsing variables.
 
@@ -143,7 +145,7 @@ A reverse search in the OGLE classification files for the code of these stars co
 of the 45 stars on the horizontal discrepancy line of the LMC, 44 of them were classified as \texttt{F1O} pulsators.
 The remaining star, code \texttt{1378}, was a \texttt{F1O2O} multimode, so in fact the argument holds.
 For the SMC case, there were 69 stars on the line, with 63 of them being \texttt{F1O} pulsators.
-Here the correlation ends, as the remaining six were four fundamental (\texttt{0473},\texttt{1029},\texttt{2792},\texttt{4675}) 
+Here the correlation ends, as the remaining six were four fundamental (\texttt{0473}, \texttt{1029}, \texttt{2792}, \texttt{4675}) 
 and two \texttt{1O2O} ones (\texttt{0998}, \texttt{4784}).
 By better analyzing the overtone content of these stars, 
 their pulsation modes could be taken into account to place them in the proper side of the PL tendencies,
@@ -156,7 +158,7 @@ that connects the low error results with the horizontal line (2).
 A detailed plot of those points can be seen in \autoref{fig:vertical-discrepancy}. 
 On the selected range, which is somewhat arbitrary on the low error side, there are 13 stars for the LMC and 12 on the SMC.
 Most of those stars are \texttt{1O} pulsators for the LMC and \texttt{F} pulsators for the SMC, 
-and they are placed in between of the two tendencies of the PL diagram, so the missclassification argument presented above does not hold.
+and they are placed in between of the two tendencies of the PL diagram, so the misclassification argument presented above does not hold.
 Like before, no a priori way of detecting these stars was found.
 
 \subsubsection{The true outliers}

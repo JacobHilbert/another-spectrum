@@ -116,7 +116,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	To quantify this loss of precision exists the notion of the machine epsilon: 
 	the difference from a given number to the next representable number on the system.
 	This epsilon (also called \enquote{unit in last place}) is greater for greater numbers,
-	and there is the question of whether we will lose or not our anhelated temporal scale precision.
+	and there is the question of whether we will lose or not our yearned temporal scale precision.
 	
 	\intent{typical precision of the numbers used}
 	
@@ -274,7 +274,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	This spectral radiance is conceptually equivalent to the term $\left<\vec S\right>\cdot \hat r$ used in \autoref{eq:poynting} \footnote{
 		The spectral radiance $B_\lambda$ is defined as the energy flux per hertz per second,
 		and is in fact connected with the statistics of the magnitude of the electric field $E(r)$ considered before, 
-		because the different occupation levels of some energies that arise from  the thermodinamical considerations.
+		because the different occupation levels of some energies that arise from  the thermodynamical considerations.
 		Again, refer to the original work of \cite{Planck1901}  for details.
 	}. 
 	With this approximation and with \autoref{eq:luminosity} we can define the monochromatic Flux and Luminosity \citep[Chapter~3, Section~5]{Carroll2017}:
@@ -555,14 +555,14 @@ In order to properly study variable star, we need to have solid definitions for 
 	\begin{equation}
 		m \ddot{r} = P 4\pi r^2 - \frac{GMm}{r^2} \label{eq:period-density-motion}
 	\end{equation}
-	After a painful process of linealization, we will get an equivalent to the Linear Adiabatic Wave Equation (LAWE):
+	After a painful process of linearization, we will get an equivalent to the Linear Adiabatic Wave Equation (LAWE):
 	\begin{equation}
 		-\frac{1}{r^4 \rho} \frac{d}{dr}\left(\Gamma_1P r^4 \frac{d\eta}{dr}\right) - \frac{1}{\rho r}\left(\frac{d}{dr}\left[\left(3\Gamma_1-4\right)P\right]\right)\eta = \omega^2 \eta \label{eq:lawe}
 	\end{equation}
 	where perturbations on $r$ of the form $\xi = \eta e^{i\omega t}$ have been considered, $\rho$ is the mean density and $\Gamma_1$ is the first adiabatic exponent\footnote{
 		$\Gamma_1=5/3$ for an ideal gas, and it is the value recommended by \cite{Cox1980}. 
 		Interestingly enough, $\Gamma_1=4/3$ for radiation, and the period actually diverges if one blindly uses \autoref{eq:period-density-relation}.
-	}. This is equation~5.90 of \cite{Catelan2015}, where the whole linealization process can be consulted.
+	}. This is equation~5.90 of \cite{Catelan2015}, where the whole linearization process can be consulted.
 	\autoref{eq:lawe} is a more general form of that first derived by \cite{Eddington1918}.
 	As already stated, the perturbations on the radius are assumed as outward waves with amplitude $\eta$ and angular frequency $\omega$.
 	In our simplistic model, the amplitude does not depend on the position of the spherical shell, so $\frac{d\eta}{dr}=0$, and the first term vanishes.
@@ -570,7 +570,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	\begin{equation}
 		\left(\frac{3 \Gamma_1-4}{R\rho}\right)\left(-\frac{dP}{dr}\right) = \omega^2 \label{eq:lawe-result}
 	\end{equation}
-	That pressure dependence comes from the pressure gradient equation of stellar evolution (in its hydrodinamical from) \cite[equation 4.18]{Catelan2015}:
+	That pressure dependence comes from the pressure gradient equation of stellar evolution (in its hydrodynamical from) \cite[equation 4.18]{Catelan2015}:
 	\begin{equation}
 		\ddot{r} = -\frac{1}{\rho} \frac{d P}{d r}-\frac{GM}{r^3}
 	\end{equation}
@@ -761,7 +761,7 @@ The canonical power spectrum is defined as its magnitude:
 			In the phase diagram, brighter is up. In the polar diagram, brighter is towards the center, and dimmer the larger the radius.
 			A transparent line was drawn from the zero of each axis to the point of minimum brightness, for reference.
 			In the polar plot, a $\star$ sign represents the centroid of each of the curled data.
-			It is of note how the symmetric sinusoid curls up to a cardiod.
+			It is of note how the symmetric sinusoid curls up to a cardioid.
 		}
 		\label{fig:complex-phase}
 	\end{figure}
@@ -814,7 +814,7 @@ The canonical power spectrum is defined as its magnitude:
 	
 	As this method involve just a sum over the data, it is expected to be $O(n)$,\footnote{
 		All time complexities are given per single frequency iteration. 
-		Calculating an spectum with $f$ frequencies, the complecity of a single iteration have to be multiplied by $f$.
+		Calculating an spectrum with $f$ frequencies, the complexity of a single iteration have to be multiplied by $f$.
 	} 
 	with an overhead due to the complex exponential (or trigonometric) calculations.
 	
