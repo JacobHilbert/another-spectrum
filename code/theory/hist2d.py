@@ -18,15 +18,16 @@ phases = [np.mod((t-ephemeris)*fi,1) for fi in freqs]
 fig,ax = plt.subplots(ncols=3,figsize=(13,4),sharey=True)
 
 xbins = np.linspace(0,1,30)
-ybins = np.linspace(mag.min(),mag.max(),30)
+ybins = np.linspace(-mag.max(),-mag.min(),30)
 for i in range(3):
 	plt.sca(ax[i])
 	plt.xlim(0,1.1)
 	plt.xticks(np.linspace(0,1,5))
-	plt.hist2d(phases[i],mag,(xbins,ybins),cmap='binary')
+	plt.hist2d(phases[i],-mag,(xbins,ybins),cmap='binary')
 	if i == 0:
-		plt.ylim(np.flip(plt.gca().get_ylim()))
 		plt.ylabel("I")
+		ticks = np.arange(-np.round(mag.max(),1)-1,-np.round(mag.min(),1)+1,0.1)
+		plt.yticks(ticks,-np.round(ticks,1))
 	plt.title(fr"phase $\phi(\nu={freqs[i]:.5f})$")
 
 plt.tight_layout()

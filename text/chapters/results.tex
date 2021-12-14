@@ -35,7 +35,7 @@ Limits to the number of detected peaks and data points were decided to eliminate
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/peaks_vs_points.pdf}
-	\caption[Results: detected number of peaks against data size]{
+	\caption[Detected number of peaks against data size]{
 		Detected number of peaks plotted against the size of the data for each Cepheid in the Magellanic Clouds.
 		The stars with less than 50 points were considered to have too little data to conclude that the frequency found with the algorithm is indeed the correct one.
 		The same doubt is casted on those stars with a high number of peaks in the spectrum. The limit is 15 peaks for the LMC and 20 for the SMC.
@@ -55,35 +55,80 @@ The resulting uncertainties were never greater than 0.04 mag, for the selected d
 The distribution of uncertainties is plotted on \autoref{fig:uncertainties}, 
 and its corresponding error bars on the PL diagram would be barely even visible.
 
+
+%\begin{figure}
+%\centering
+%	\includegraphics[width=\textwidth]{img/PL_realtion.pdf}
+%	\caption[Results: PL relation for the Magellanic Clouds]{
+%		Period-Luminosity diagrams for classical Cepheids int he Magellanic Clouds, on $I$ magnitude and $W_I$ index.
+%		Discarded stars according to the criteria presented in \autoref{fig:peaks-n-points} are shown as faint red shadows.
+%		In each diagram, two main linear tendencies can be noted, the fundamental and the first overtone tendencies.
+%		It is notable how well the Wesenheit index separates the two tendencies, especially in the LMC.
+%	}
+%	\label{fig:pl-result}
+%\end{figure}
+
+
+\section{PL relations for the Magellanic Clouds}
+
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{img/PL_realtion.pdf}
-	\caption[Results: PL relation for the Magellanic Clouds]{
-		Period-Luminosity diagrams for classical Cepheids int he Magellanic Clouds, on $I$ magnitude and $W_I$ index.
+	\includegraphics[width=\textwidth]{img/PL_result.pdf}
+	\caption[PL relations for the Magellanic Clouds]{
+		Period-Luminosity relations for classical Cepheids in the Magellanic Clouds, on $I$ magnitude and $W_I$ index.
 		Discarded stars according to the criteria presented in \autoref{fig:peaks-n-points} are shown as faint red shadows.
-		In each diagram, two main linear tendencies can be noted, the fundamental and the first overtone tendencies.
-		It is notable how well the Wesenheit index separates the two tendencies, especially in the LMC.
+		Stars belonging to the fundamental pulsators tendency are in purple, while stars in the first overtone pulsators tendency are in yellow.
+		The remaining stars are in green, probably second overtone pulsators. The OGLE-IV results have been used to separate these pulsation modes (see \autoref{sec:ogle-comparison}).
+		Black lines mark the linear regression results for each mode whose details are presented in \autoref{tab:results}.
+		It is remarkable how well the Wesenheit index separates these two tendencies, especially in the LMC.
 	}
 	\label{fig:pl-result}
 \end{figure}
-
-\section{PL relations for the Magellanic Clouds}
 
 If we plot the Wesenheit index against the frequencies of the highest peak for each star, remembering that $\log P=-\log \nu$, we obtain \autoref{fig:pl-result},
 the Period-Luminosity relation for the Magellanic Clouds. This is a good reproduction of the results from \cite{OGLE2016}, 
 from where we can associate the lower linear tendency to the \texttt{F} pulsation mode and the upper one with the \texttt{1O} mode, or the first overtone.
 Some few stars of the \texttt{2O} mode can be observed at the back of the \texttt{1O} tendency, around $\log P\approx 0$.
-This is of course just a general association, given that we did not perform pulsation mode analysis on these results.
-Also, multimode pulsators like \texttt{F1O} or \texttt{1O2O} cannot be separated from their lowest frequency on this kind of PL diagram.
+This is of course just a general association, given that we did not perform pulsation mode analysis on these results, but instead use the pulsation modes given by OGLE.
+Multimode pulsators like \texttt{F1O} or \texttt{1O2O} cannot be separated from the position of their lowest frequency on this kind of PL diagram;
+\texttt{10}, \texttt{F10} and \texttt{F1020} could not be set apart in the PL diagram, for example.
 
-The Wesenheit index is as successful as expected on reducing the dispersion on the diagram.
-This method is just a mean approximation of the reddening, and as such, it is limited, but great separation is achieved on the LMC diagram.
-The dispersion, however, is far grater in the SMC compared to the LMC. 
-Despite this specific dataset having fewer points per star in the SMC, this should not be an artifact of the data, 
-but a result of the SMC being farther away than the LMC, at $62.44 \pm_{stat} 0.47 \pm_{sys}0.81$ kpc 
+The Wesenheit index is as successful as expected on reducing the dispersion on the diagram,
+but this effect can be noticed numerically on the linear regression results displayed in \autoref{tab:results}:
+the $W_I$ uncertainties are in all cases equal or lower than the $I$ ones.
+Another property of the diagram and the results is the greater dispersion than the SMC shows compared to the LMC, in all cases.
+This is almost certainly not an issue with the measurements, but a consequence of the SMC being farther away than the LMC, at $62.44 \pm_{stat} 0.47 \pm_{sys}0.81$ kpc 
 and $49.97 \pm_{stat} 0.19 \pm_{sys} 1.11$ kpc respectively \citep{SMC2020,LMC2013}.
 
-\subsection{Comparison with OGLE-IV results}
+In theory, the width of the tendencies could be further reduced by deredening each individual star, using the maps from \cite{Reddening2021}.
+Each point of the diagram would have a different $R_I$ for the calculation of its Wesenheit index, this time actually extinction-free and not just extinction-free on average.
+This width, however, never will be reduced to zero, as it is consequence of the intrinsic width of the instability strip on the HR diagram.
+
+\begin{table}
+	\centering
+	\begin{tabular}{rcc|cc|cc}
+	    &      &  & \multicolumn{2}{c}{This work} & \multicolumn{2}{|c}{OGLE-IV} \\ 
+		&  $m$  & mode & $\alpha$ & $\beta$ & $\alpha$ & $\beta$  \\ \hline
+	\multirow{4}{*}{LMC} & \multirow{2}{*}{$I$}   & \texttt{1O} & $-3.204 \pm 0.019$ & $16.374 \pm 0.006$ &        $-3.260 \pm 0.013$ & $16.362 \pm 0.004$ \\
+	                     &                        & \texttt{F}  & $-2.878 \pm 0.022$ & $16.827 \pm 0.014$ &        $-2.911 \pm 0.014$ & $16.822 \pm 0.009$ \\ \cline{2-7}
+						 & \multirow{2}{*}{$W_I$} & \texttt{1O} & $-3.401 \pm 0.014$ & $15.386 \pm 0.005$ &        $-3.431 \pm 0.007$ & $15.393 \pm 0.002$ \\
+						 &						  & \texttt{F}  & $-3.239 \pm 0.019$ & $15.819 \pm 0.012$ &        $-3.314 \pm 0.008$ & $15.888 \pm 0.005$ \\ \hline
+	\multirow{4}{*}{SMC} & \multirow{2}{*}{$I$}   & \texttt{1O} & $-3.279 \pm 0.026$ & $16.818 \pm 0.006$ &        $-3.299 \pm 0.023$ & $16.818 \pm 0.005$ \\ 
+						 &						  & \texttt{F}  & $-3.074 \pm 0.017$ & $17.393 \pm 0.008$ &        $-3.115 \pm 0.015$ & $17.401 \pm 0.007$ \\\cline{2-7}
+						 & \multirow{2}{*}{$W_I$} & \texttt{1O} & $-3.513 \pm 0.024$ & $15.938 \pm 0.006$ &        $-3.548 \pm 0.017$ & $15.961 \pm 0.004$ \\ 
+						 &                        & \texttt{F}  & $-3.390 \pm 0.016$ & $16.428 \pm 0.007$ &        $-3.460 \pm 0.011$ & $16.493 \pm 0.005$
+	\end{tabular}
+	\caption[Results: linear regressions for the PL relations]{
+		Linear relation results for the fundamental (\texttt{F}) and first overtone (\texttt{1O}) tendencies from \autoref{fig:pl-result}, using the model $m=\alpha \log P + \beta$.
+		Results from this work have been calculated using the classical least-squares method. 
+		Results from OGLE-IV were taken from \cite{OGLE2016}, and were calculated using a more elaborate method; hence the uncertainties in the values are not comparable.
+		Caution should be taken when interpreting these results, as these PL relations could not be completely linear \citep{Ngeow2009}.
+	}
+	\label{tab:results}
+\end{table}
+	
+
+\subsection{Comparison with OGLE-IV periods \label{sec:ogle-comparison}}
 
 
 Some disperse points in the PL diagram were also present in the OGLE results. 
@@ -99,7 +144,7 @@ Using that data, we can directly compare the results, information presented in \
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\textwidth]{img/discrepancies.pdf}
-	\caption[Results: comparison with OGLE-IV periods]{
+	\caption[Comparison with OGLE-IV periods]{
 		Absolute differences between the periods found on this work and those found on the OGLE data site, as a function of $\log P$.
 		Five groups can be discerned: (1): the bulk of stars, those in accordance to the OGLE period, shown in black. 
 		(2): a tiny subset of those, forming a near vertical line of increasing discrepancy, at around  $\log P = 0.3$, and connects with
@@ -120,7 +165,7 @@ This suggest that a period grid, not a frequency one, was used to produce th OGL
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{img/horizontal_line_corrections.pdf}
-	\caption[Results: comparison with OGLE-IV periods]{
+	\caption[Displacement of some stars between pulsation modes]{
 		Differences on period for the horizontal line (3) from \autoref{fig:comparison} and true outliers (5), when using the period found in this work (on red)
 		and the displacement  (green dashed line) to their positions when using the periods from OGLE (on green).
 		Big magenta circles are drawn on the true outliers from  \autoref{fig:comparison}.
@@ -196,6 +241,30 @@ and can be performed using any of the algorithms discussed in this work, as fals
 A PL diagram on linear frequency of these secondary peaks, demonstrating the analogy with \autoref{fig:uneven-advantage}, is presented on \autoref{fig:linear-color-pl-lmc}.
 Versions of \autoref{fig:pl-result} with those same secondary peaks for both Clouds are in \autoref{fig:color-pl-lmc} and \autoref{fig:color-pl-smc},
 where the misplaced principal peaks of the outliers can be seen lying with the secondary peaks.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/lmc.png}
+	\caption[PL relation with secondary peaks for the LMC]{
+		Period-Luminosity relation for the LMC, but showing all the peaks on the spectrum for each star above noise level. 
+		The principal peak is shown in yellow, and subsequent peaks in bluer colors according to their relative heights.
+		Each horizontal line of this graphic could be thought as an intensity image of the star Fourier spectrum.
+	}
+	\label{fig:color-pl-lmc}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/smc.png}
+	\caption[PL relation with secondary peaks for the SMC]{
+		Period-Luminosity relation for the SMC, but showing all the peaks on the spectrum for each star above noise level. 
+		The principal peak is shown in yellow, and subsequent peaks in bluer colors according to their relative heights.
+	}
+	\label{fig:color-pl-smc}
+\end{figure}
+
 
 
 % additional peaks diagrams on the appendix

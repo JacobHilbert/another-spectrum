@@ -1,6 +1,8 @@
-Five methods to access the frequency spectrum of a signal with arbitrary temporal smapling were presented, and implementations were given.
+
+
+Five methods to access the frequency spectrum of a signal with arbitrary temporal sampling were presented, and implementations were given.
 Despite all of them having very different theoretical origins, including information theory, geometry and statistics,
-all of them were observed to approximate the underliying Fourier periodogram, the other spectrum of variable stars.
+all of them were observed to approximate the underlying Fourier periodogram, the other spectrum of variable stars.
 
 From these methods, the Fourier and Lomb-Scargle periodograms were found to be the most efficient, 
 and the arclength periodogram the less efficient, as expected.
@@ -8,16 +10,47 @@ The performance of the entropy and dispersion periodograms are dependent on the 
 An heuristic implementation of the entropy periodogram was presented, based on approximating the bidimensional histogram using a one-dimensional algorithm.
 This technique presents a surprising amount of speedup, making it comparable to Lomb-Scargle, and faster than dispersion and arclength. 
 For a small number of bins ($M\leq3$), however, this approximation distorts the spectrum.
+The faster, incremental implementation of the simple Fourier transform given by \cite{Kurtz1985} was implemented, 
+outperforming all the other methods by a wide margin.
 
 The entropy periodogram was found to have a peak profile sharper and narrower than the other methods.
 This is another efficiency problem in the sense that the frequency grid should be much finer to avoid missing the peak,
 but this behavior can be desirable; narrower peaks means less uncertainty on the frequency, 
 giving the entropy periodogram more frequency resolving power than all the other methods, a property already explored by \cite{Cincotta1999II}.
 
-Without any modification, all algorithms present false peaks neaer the frequency corresponding to the mean sampling frequency of the data.
+Without any modification, all algorithms present false peaks near the frequency corresponding to the mean sampling frequency of the data.
 Solutions to this problem were found for the Fourier, Lomb-Scargle, arclength and dispersion periodograms; 
 solutions simple enough to not have any noticeable impact on the performance.
 For the entropy periodogram, however, no reliable workaround could be found.
+
+The Period-Luminosity relations on the Magellanic Clouds were reproduced using the incremental Fourier transform.
+Using the pulsation mode data from OGLE-IV, the fundamental and first overtone tendencies were separated, 
+and adjusted to linear models using classical least squares, with results being in broad agreement with OGLE-IV.
+The Wesenheit index reduced the dispersion on the PL relation, albeit more considerably in the LMC case.
+The greater dispersion of the SMC data is thought to be an effect of this Cloud being farther away.
+%,
+%but it could also be consequence of another factor, as the width of the PL relation 
+%is related to the width of the instability strip on the HR diagram of the cloud.
+
+\section{Future Work}
+
+In order to properly separate the tendencies on the PL diagram, the pulsation mode of each star must be independently determined.
+Some heuristic methods do exists for this task using a Fourier series decomposition \citep{Zabolotski2005}, 
+and it should be possible to calculate those coefficients from the spectrogram,
+but as the magnitude of the Fourier transform, the information about the phase is lost (see \autoref{eq:conjugate}).
+This magnitude is calculated implicitly by all methods, except for the direct Fourier transform, where the absolute value is taken explicitly;
+therefore is the only method that could recover the phase part of the complex spectrum.
+
+Another nuance that needs more attention is the search grid. 
+Given the number of points and the time span of the data, 
+there should be ways of estimating the more optimal grid on a star by star basis.
+Additionally, the question of which type of grid is preferable (frequency linear, period linear, or logarithmic in both) still remains.
+
+On a more observational level, and as was previously mentioned, 
+each star should have its own $R_I$ for the Wesenheit index calculation, and more so in a dust populated region as the Magellanic Clouds.
+This can be done using the reddening maps of \cite{Reddening2021}, and the coordinates of each star.
+In theory, this would eliminate \textit{some} of the systematic dispersion of the PL diagram,
+but not all, as this dispersion is in part caused by the width of the instability strip in the evolutionary tracks of those stars.
 
 
 

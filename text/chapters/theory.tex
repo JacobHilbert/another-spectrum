@@ -140,7 +140,8 @@ In order to properly study variable star, we need to have solid definitions for 
 	
 	\subsubsection{Energy conservation and the inverse square law}
 
-	The magnitude system, vertical axis of a light curve, can be understood from the principles of electromagnetic waves.
+	The vertical axis of a light curve, that is the magnitude of a star measured in a photometric system, can be understood from the principles of electromagnetic waves.
+	%The magnitude system, vertical axis of a light curve, can be understood from the principles of electromagnetic waves.
 	We would first want to ascertain the distance dependence of the energy flux for an isotropic light source.
 	Here, isotropic means that the magnitude of the electric and magnetic fields of the wave would not depend on any angle.
 	In spherical coordinates, for an outgoing wave of frequency $\omega$ and wave number $k$, we have (see \autoref{fig:spherical-em})
@@ -216,7 +217,7 @@ In order to properly study variable star, we need to have solid definitions for 
 	That means that a magnitude 5 object would have a flux $F_b = F_a(r_0)/100$. 
 	Replacing that in \autoref{eq:general-magnitude} and solving for $\alpha$ results in
 	$$
-	5 = \alpha \ln\frac{1}{100} \qquad \Rightarrow \qquad \alpha = \alpha = -\frac{5}{\ln 100} = -\frac{5}{\log_{10}(100)\ln(10)} = -\frac{2.5}{\ln 10},
+	5 = \alpha \ln\frac{1}{100} \qquad \Rightarrow \qquad \alpha  = -\frac{5}{\ln 100} = -\frac{5}{\log_{10}(100)\ln(10)} = -\frac{2.5}{\ln 10},
 	$$
 	which allows us to rewrite \autoref{eq:general-magnitude} as 
 	\begin{equation}
@@ -509,7 +510,7 @@ In order to properly study variable star, we need to have solid definitions for 
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/Karttunen_13.2.pdf}
 		\caption[Variable stars in the HR diagram]{
-			Position of several types of variable stars in a Hertzsprung-Russell diagram.
+			Position of several classes of variable stars in a Hertzsprung-Russell diagram.
 			The abscissa is given as spectral class, proportional to temperature and color: 
 			red (cooler, 3750 K at M0) on the right and blue-white (hotter, 27000 K at B0) to the left. 
 			The ordinate is given in absolute visual magnitude $M_V$.
@@ -518,6 +519,19 @@ In order to properly study variable star, we need to have solid definitions for 
 			Taken from \cite{Karttunen2017}, Figure 14.2.
 		}
 		\label{fig:HR-diagram-karttunen}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/GaiaCaMD.png}
+		\caption[Pulsating stars on the CaMD from Gaia data release 2]{
+			Positions of several classes of pulsating variable stars in the Color-absolute Magnitude Diagram (CaMD) from Gaia data release 2.
+			This constitutes an observational version of \autoref{fig:HR-diagram-karttunen} in the Galaxy.
+			It is of note that this is the raw measurements, and are uncorrected for extinction.
+			Taken from \cite{Gaia2019}, figure 3. 
+			The selection parameters of both the background grey stars and the selected variables are given in appendix B of the source.
+		}
+		\label{fig:Gaia-CaMD}
 	\end{figure}
 	
 	\subsection{Stellar populations}
@@ -764,8 +778,9 @@ The canonical power spectrum is defined as its magnitude:
 			in green and magenta respectively. A simple sine curve is shown in light grey as reference.
 			The magnitude was normalized to the $[0,1]$ range for visibility. 
 			In the phase diagram, brighter is up. In the polar diagram, brighter is towards the center, and dimmer the larger the radius.
-			A transparent line was drawn from the zero of each axis to the point of minimum brightness, for reference.
-			In the polar plot, a $\star$ sign represents the centroid of each of the curled data.
+			%A transparent line was drawn from the zero of each axis to the point of minimum brightness, for reference.
+			A line in transparence was drawn from the zero of each axis to the point of minimum brightness, for reference.
+			In the polar plot, a star symbol represents the centroid of each of the curled data.
 			It is of note how the symmetric sinusoid curls up to a cardioid.
 		}
 		\label{fig:complex-phase}
@@ -804,7 +819,7 @@ The canonical power spectrum is defined as its magnitude:
 		\includegraphics[width=\textwidth]{img/complex_phase_off.pdf}
 		\caption[Off-frequency phase diagrams: real and complex]{
 			Several phase diagrams (Fourier curls) calculated with different sample frequencies for the star in \autoref{fig:mag-phase-2}.
-			Each colum has the normal phase diagram and the polar one. A black line and a star ($\star$) symbol represents the centroid of the curled figure.
+			Each colum has the normal phase diagram and the polar one. A black line and a star symbol represents the centroid of the curled figure.
 			The first column has the correct frequency, and thus the points are clumped together.
 			The second column has a frequency only slightly higher; the figure begins to misalign, 
 			but the magnitude of the centroid is mostly stable: this periodogram is not as sensitive as the others.
