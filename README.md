@@ -1,5 +1,5 @@
 # another-spectrum
-Monography "The other spectrum of the stars"
+Monography "The other spectrum of the stars". The current pdf document is in ![final_document](./final_document.pdf)
 
 
 ## Licenses 
